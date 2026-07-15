@@ -1,0 +1,14 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "jpexim",
+  "compatibility_date": "2026-07-11",
+  "observability": {
+    "enabled": true
+  },
+  "assets": {
+    "directory": "dist/app/browser"
+  },
+  "compatibility_flags": [
+    "nodejs_compat"
+  ]
+}
