@@ -1,0 +1,11 @@
+# robots.txt for https://jpeximindia.com/
+
+User-agent: *
+Allow: /
+
+# Uncomment the lines below if you have admin or private sections
+# Disallow: /admin/
+# Disallow: /private/
+
+# Sitemap location
+Sitemap: https://jpeximindia.com/sitemap.xml
