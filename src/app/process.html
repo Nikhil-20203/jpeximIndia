@@ -1,0 +1,230 @@
+<!-- STEP-BY-STEP PRODUCTION PROCESS SECTION -->
+<section id="process" class="py-24 bg-white border-t border-slate-100">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <!-- Section Title Header -->
+    <div class="text-center max-w-3xl mx-auto mb-16">
+      <span class="text-sm font-bold text-brand-gold tracking-widest uppercase block mb-3">OUR SUPPLY CHAIN</span>
+      <h2 class="font-display font-bold text-3xl sm:text-4xl text-brand-blue">Step-by-Step Production Process</h2>
+      <div class="w-16 h-1 bg-brand-gold mx-auto mt-4 rounded-full"></div>
+      <p class="text-slate-500 text-lg mt-6">
+        From land preparation and seed selection to cold chain security and warehouse storage, we supervise every step meticulously.
+      </p>
+    </div>
+
+    <!-- Process Switch Toggle -->
+    <div class="flex justify-center mb-12 border-b border-slate-200">
+      <div class="flex gap-8">
+        <button type="button" (click)="setProcessTab('potato')" class="px-8 py-4 text-xs font-bold uppercase tracking-wider transition-all duration-300 border-b-2 cursor-pointer"
+          [class.border-[#0A2540]]="currentProcessTab() === 'potato'"
+          [class.border-transparent]="currentProcessTab() !== 'potato'"
+          [class.text-[#0A2540]]="currentProcessTab() === 'potato'"
+          [class.text-slate-400]="currentProcessTab() !== 'potato'"
+          [class.hover:text-[#0A2540]]="currentProcessTab() !== 'potato'">
+          🥔 Potato Sourcing Process
+        </button>
+        <button type="button" (click)="setProcessTab('peanut')" class="px-8 py-4 text-xs font-bold uppercase tracking-wider transition-all duration-300 border-b-2 cursor-pointer"
+          [class.border-[#0A2540]]="currentProcessTab() === 'peanut'"
+          [class.border-transparent]="currentProcessTab() !== 'peanut'"
+          [class.text-[#0A2540]]="currentProcessTab() === 'peanut'"
+          [class.text-slate-400]="currentProcessTab() !== 'peanut'"
+          [class.hover:text-[#0A2540]]="currentProcessTab() !== 'peanut'">
+          🥜 Peanut Sourcing Process
+        </button>
+      </div>
+    </div>
+
+    <!-- POTATO SUPPLY TIMELINE -->
+    @if (currentProcessTab() === 'potato') {
+      <div class="space-y-8 max-w-5xl mx-auto">
+        
+        <!-- Interactive Horizontal/Vertical Grid of Steps -->
+        <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          
+          <div class="bg-slate-50 p-6 rounded-xl border border-slate-100 relative hover:shadow-md transition-all">
+            <span class="absolute top-4 right-4 text-3xl font-mono font-bold text-slate-200" aria-hidden="true">01</span>
+            <div class="w-10 h-10 bg-brand-blue text-brand-gold flex items-center justify-center rounded-lg mb-4">
+              <mat-icon>landscape</mat-icon>
+            </div>
+            <h4 class="font-bold text-slate-800 text-base mb-1">1. Land Preparation</h4>
+            <p class="text-slate-500 text-xs leading-relaxed">Selecting fertile, well-drained loamy soil, plowed and enriched with organic manure and balanced nutrients to create the ideal growing environment.</p>
+          </div>
+
+          <div class="bg-slate-50 p-6 rounded-xl border border-slate-100 relative hover:shadow-md transition-all">
+            <span class="absolute top-4 right-4 text-3xl font-mono font-bold text-slate-200" aria-hidden="true">02</span>
+            <div class="w-10 h-10 bg-brand-blue text-brand-gold flex items-center justify-center rounded-lg mb-4">
+              <mat-icon>grain</mat-icon>
+            </div>
+            <h4 class="font-bold text-slate-800 text-base mb-1">2. Seed Selection &amp; Planting</h4>
+            <p class="text-slate-500 text-xs leading-relaxed">High-quality certified seed potatoes are carefully selected and planted at the proper depth and spacing. This ensures healthy plant growth, uniform tuber development, and higher yields.</p>
+          </div>
+
+          <div class="bg-slate-50 p-6 rounded-xl border border-slate-100 relative hover:shadow-md transition-all">
+            <span class="absolute top-4 right-4 text-3xl font-mono font-bold text-slate-200" aria-hidden="true">03</span>
+            <div class="w-10 h-10 bg-brand-blue text-brand-gold flex items-center justify-center rounded-lg mb-4">
+              <mat-icon>opacity</mat-icon>
+            </div>
+            <h4 class="font-bold text-slate-800 text-base mb-1">3. Crop Management</h4>
+            <p class="text-slate-500 text-xs leading-relaxed">During the growing season, the crop receives regular irrigation, balanced fertilization, weed control, and plant protection. Continuous field monitoring helps maintain healthy crop development.</p>
+          </div>
+
+          <div class="bg-slate-50 p-6 rounded-xl border border-slate-100 relative hover:shadow-md transition-all">
+            <span class="absolute top-4 right-4 text-3xl font-mono font-bold text-slate-200" aria-hidden="true">04</span>
+            <div class="w-10 h-10 bg-brand-blue text-brand-gold flex items-center justify-center rounded-lg mb-4">
+              <mat-icon>agriculture</mat-icon>
+            </div>
+            <h4 class="font-bold text-slate-800 text-base mb-1">4. Harvesting</h4>
+            <p class="text-slate-500 text-xs leading-relaxed">Potatoes are harvested only after reaching full maturity. Modern harvesting methods are used to minimize damage and maintain product quality.</p>
+          </div>
+
+          <div class="bg-slate-50 p-6 rounded-xl border border-slate-100 relative hover:shadow-md transition-all">
+            <span class="absolute top-4 right-4 text-3xl font-mono font-bold text-slate-200" aria-hidden="true">05</span>
+            <div class="w-10 h-10 bg-brand-blue text-brand-gold flex items-center justify-center rounded-lg mb-4">
+              <mat-icon>inventory</mat-icon>
+            </div>
+            <h4 class="font-bold text-slate-800 text-base mb-1">5. Field Collection</h4>
+            <p class="text-slate-500 text-xs leading-relaxed">Freshly harvested potatoes are collected from the fields and placed in clean crates or bags. Careful handling helps prevent bruising and mechanical damage.</p>
+          </div>
+
+          <div class="bg-slate-50 p-6 rounded-xl border border-slate-100 relative hover:shadow-md transition-all">
+            <span class="absolute top-4 right-4 text-3xl font-mono font-bold text-slate-200" aria-hidden="true">06</span>
+            <div class="w-10 h-10 bg-brand-blue text-brand-gold flex items-center justify-center rounded-lg mb-4">
+              <mat-icon>cleaning_services</mat-icon>
+            </div>
+            <h4 class="font-bold text-slate-800 text-base mb-1">6. Cleaning &amp; Preliminary Inspection</h4>
+            <p class="text-slate-500 text-xs leading-relaxed">The harvested potatoes are cleaned to remove soil and foreign materials. Initial quality inspection removes damaged, diseased, or undersized potatoes.</p>
+          </div>
+
+          <div class="bg-slate-50 p-6 rounded-xl border border-slate-100 relative hover:shadow-md transition-all">
+            <span class="absolute top-4 right-4 text-3xl font-mono font-bold text-slate-200" aria-hidden="true">07</span>
+            <div class="w-10 h-10 bg-brand-blue text-brand-gold flex items-center justify-center rounded-lg mb-4">
+              <mat-icon>local_shipping</mat-icon>
+            </div>
+            <h4 class="font-bold text-slate-800 text-base mb-1">7. Transportation to Cold Storage</h4>
+            <p class="text-slate-500 text-xs leading-relaxed">The selected potatoes are transported quickly using clean vehicles to maintain freshness and reduce post-harvest losses.</p>
+          </div>
+
+          <div class="bg-slate-50 p-6 rounded-xl border border-slate-100 relative hover:shadow-md transition-all">
+            <span class="absolute top-4 right-4 text-3xl font-mono font-bold text-slate-200" aria-hidden="true">08</span>
+            <div class="w-10 h-10 bg-brand-blue text-brand-gold flex items-center justify-center rounded-lg mb-4">
+              <mat-icon>ac_unit</mat-icon>
+            </div>
+            <h4 class="font-bold text-slate-800 text-base mb-1">8. Cold Storage</h4>
+            <p class="text-slate-500 text-xs leading-relaxed">Potatoes are stored in modern temperature-controlled cold storage facilities under carefully monitored conditions. Proper temperature and humidity help preserve freshness, maintain quality, and extend shelf life until dispatch for domestic or international markets.</p>
+          </div>
+
+        </div>
+
+        <div class="bg-brand-blue text-white p-6 rounded-2xl flex flex-wrap justify-between items-center gap-4 shadow-md">
+          <div>
+            <h5 class="font-display font-bold text-lg text-brand-gold">OUR COLD CHAIN COMMITMENT</h5>
+            <p class="text-xs text-slate-300 font-light mt-1">Every batch exported maintains temperature logging until the container seals are locked at Mundra Port.</p>
+          </div>
+          <button type="button" routerLink="/contact" class="px-5 py-2.5 bg-brand-gold hover:bg-brand-gold-hover text-brand-blue font-bold text-xs rounded transition-colors cursor-pointer">
+            REQUEST SPECS PDF
+          </button>
+        </div>
+      </div>
+    }
+
+    <!-- PEANUT SUPPLY TIMELINE -->
+    @if (currentProcessTab() === 'peanut') {
+      <div class="space-y-8 max-w-5xl mx-auto">
+        <div class="grid sm:grid-cols-2 lg:grid-cols-5 gap-4">
+          
+          <div class="bg-slate-50 p-5 rounded-xl border border-slate-100 relative flex flex-col justify-between hover:shadow-md transition-all">
+            <div>
+              <span class="text-2xl font-mono font-bold text-slate-200 block mb-3">01</span>
+              <h4 class="font-bold text-slate-800 text-sm mb-1.5">1. Land Preparation</h4>
+              <p class="text-slate-500 text-[11px] leading-relaxed">Fertile, well-drained soil is selected. The land is ploughed, levelled and prepared to ensure good aeration and moisture for healthy crop growth.</p>
+            </div>
+          </div>
+
+          <div class="bg-slate-50 p-5 rounded-xl border border-slate-100 relative flex flex-col justify-between hover:shadow-md transition-all">
+            <div>
+              <span class="text-2xl font-mono font-bold text-slate-200 block mb-3">02</span>
+              <h4 class="font-bold text-slate-800 text-sm mb-1.5">2. Seed Selection &amp; Sowing</h4>
+              <p class="text-slate-500 text-[11px] leading-relaxed">High-quality, disease-free peanut seeds are selected and sown at the right depth and spacing for uniform growth and higher yield.</p>
+            </div>
+          </div>
+
+          <div class="bg-slate-50 p-5 rounded-xl border border-slate-100 relative flex flex-col justify-between hover:shadow-md transition-all">
+            <div>
+              <span class="text-2xl font-mono font-bold text-slate-200 block mb-3">03</span>
+              <h4 class="font-bold text-slate-800 text-sm mb-1.5">3. Crop Management</h4>
+              <p class="text-slate-500 text-[11px] leading-relaxed">Regular irrigation, balanced nutrition, weed control and plant protection are followed. Our team monitors the crop throughout the growing season to maintain plant health.</p>
+            </div>
+          </div>
+
+          <div class="bg-slate-50 p-5 rounded-xl border border-slate-100 relative flex flex-col justify-between hover:shadow-md transition-all">
+            <div>
+              <span class="text-2xl font-mono font-bold text-slate-200 block mb-3">04</span>
+              <h4 class="font-bold text-slate-800 text-sm mb-1.5">4. Harvesting</h4>
+              <p class="text-slate-500 text-[11px] leading-relaxed">Peanuts are harvested when the pods are fully developed. Plants are lifted carefully to avoid damage to the pods.</p>
+            </div>
+          </div>
+
+          <div class="bg-slate-50 p-5 rounded-xl border border-slate-100 relative flex flex-col justify-between hover:shadow-md transition-all">
+            <div>
+              <span class="text-2xl font-mono font-bold text-slate-200 block mb-3">05</span>
+              <h4 class="font-bold text-slate-800 text-sm mb-1.5">5. Drying</h4>
+              <p class="text-slate-500 text-[11px] leading-relaxed">Harvested peanuts are sun-dried in the field for 2-3 days or as per moisture level to reduce moisture and improve storage life.</p>
+            </div>
+          </div>
+
+          <div class="bg-slate-50 p-5 rounded-xl border border-slate-100 relative flex flex-col justify-between hover:shadow-md transition-all">
+            <div>
+              <span class="text-2xl font-mono font-bold text-slate-200 block mb-3">06</span>
+              <h4 class="font-bold text-slate-800 text-sm mb-1.5">6. Shelling (If Required)</h4>
+              <p class="text-slate-500 text-[11px] leading-relaxed">After drying, peanuts are threshed and shelled to separate pods from plants and remove soil and impurities.</p>
+            </div>
+          </div>
+
+          <div class="bg-slate-50 p-5 rounded-xl border border-slate-100 relative flex flex-col justify-between hover:shadow-md transition-all">
+            <div>
+              <span class="text-2xl font-mono font-bold text-slate-200 block mb-3">07</span>
+              <h4 class="font-bold text-slate-800 text-sm mb-1.5">7. Cleaning &amp; Sorting</h4>
+              <p class="text-slate-500 text-[11px] leading-relaxed">Peanuts are cleaned to remove dust, stones and foreign particles. They are sorted by size, color and quality to ensure export standards.</p>
+            </div>
+          </div>
+
+          <div class="bg-slate-50 p-5 rounded-xl border border-slate-100 relative flex flex-col justify-between hover:shadow-md transition-all">
+            <div>
+              <span class="text-2xl font-mono font-bold text-slate-200 block mb-3">08</span>
+              <h4 class="font-bold text-slate-800 text-sm mb-1.5">8. Grading &amp; Quality Inspection</h4>
+              <p class="text-slate-500 text-[11px] leading-relaxed">Peanuts are graded as per size and quality. Each lot is inspected to remove damaged, shriveled or aflatoxin-affected peanuts.</p>
+            </div>
+          </div>
+
+          <div class="bg-slate-50 p-5 rounded-xl border border-slate-100 relative flex flex-col justify-between hover:shadow-md transition-all">
+            <div>
+              <span class="text-2xl font-mono font-bold text-slate-200 block mb-3">09</span>
+              <h4 class="font-bold text-slate-800 text-sm mb-1.5">9. Packing</h4>
+              <p class="text-slate-500 text-[11px] leading-relaxed">Peanuts are packed in high-quality food-grade bags (25kg, 50kg or as per buyer requirement) to maintain freshness and protect from moisture.</p>
+            </div>
+          </div>
+
+          <div class="bg-slate-50 p-5 rounded-xl border border-slate-100 relative flex flex-col justify-between hover:shadow-md transition-all">
+            <div>
+              <span class="text-2xl font-mono font-bold text-slate-200 block mb-3">10</span>
+              <h4 class="font-bold text-slate-800 text-sm mb-1.5">10. Warehouse Storage &amp; Dispatch</h4>
+              <p class="text-slate-500 text-[11px] leading-relaxed">Packed peanuts are stored in clean, dry, well-ventilated warehouses under controlled moisture conditions. Proper storage helps maintain quality and prevents fungal growth until shipment to buyers worldwide.</p>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="bg-gradient-to-r from-slate-900 to-brand-blue text-white p-6 rounded-2xl flex flex-wrap justify-between items-center gap-4">
+          <div>
+            <h5 class="font-display font-bold text-base text-brand-gold">AFLATOXIN COMPLIANCE GUARANTEE</h5>
+            <p class="text-xs text-slate-300 font-light mt-1">We supply complete pre-shipment surveyor lab reports for every container of Bold &amp; Java peanuts.</p>
+          </div>
+          <button type="button" routerLink="/contact" class="px-4 py-2 bg-brand-gold hover:bg-brand-gold-hover text-brand-blue font-bold text-xs rounded transition-colors cursor-pointer">
+            REQUEST CERTIFICATIONS
+          </button>
+        </div>
+      </div>
+    }
+
+  </div>
+</section>

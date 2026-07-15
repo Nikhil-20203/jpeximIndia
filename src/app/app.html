@@ -1,0 +1,285 @@
+<!-- JP EXIM B2B High-End Export Portal -->
+<div class="min-h-screen bg-slate-50 font-sans selection:bg-brand-gold/30 selection:text-brand-blue flex flex-col relative">
+
+  <!-- TOP HEADER NOTIFICATION (B2B Trade Status) -->
+  <div class="bg-brand-blue text-white py-2 px-4 text-xs font-mono flex flex-wrap justify-between items-center gap-2 border-b border-white/10">
+    <div class="flex items-center gap-2">
+      <span class="inline-block w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+      <span>OFFICIAL IEC: <strong>GUXPP6168P</strong> (DGFT Govt. of India Verified)</span>
+    </div>
+    <div class="flex items-center gap-4">
+      <span>GSTIN: <strong>24GUXPP6168P1Z8</strong></span>
+      <span class="hidden md:inline">|</span>
+      <span class="hidden md:inline">Origin Hub: Deesa, Gujarat, India</span>
+    </div>
+  </div>
+
+  <!-- NAVIGATION BAR -->
+  <header class="bg-[#0A2540] sticky top-0 z-40 shadow-lg transition-all duration-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-16">
+        
+        <!-- Brand Logo Element mimicking the PDF layout -->
+        <a routerLink="/" class="flex items-center gap-3 cursor-pointer text-left focus:outline-none focus:ring-2 focus:ring-brand-gold/50 rounded-xl p-1" aria-label="JP EXIM Home">
+          <span class="relative flex items-center justify-center w-10 h-10 bg-[#D4AF37] rounded shadow-md border border-[#0A2540]/30">
+            <!-- Sleek Stylized JP design -->
+            <span class="font-display font-bold text-xl text-[#0A2540] leading-none">JP</span>
+          </span>
+          <span>
+            <span class="font-display font-bold text-xl tracking-tight text-white leading-none block">JP EXIM</span>
+            <span class="text-[10px] uppercase tracking-widest text-[#D4AF37] font-medium mt-0.5 block">Global Trade • Trusted Exports</span>
+          </span>
+        </a>
+
+        <!-- Desktop Navigation Menu -->
+        <nav class="hidden lg:flex items-center gap-6 text-sm font-medium text-slate-300">
+          <a routerLink="/" routerLinkActive="text-white border-b-2 border-[#D4AF37]" [routerLinkActiveOptions]="{exact: true}" class="hover:text-white py-1 transition-colors relative text-slate-300 font-medium">
+            Home
+          </a>
+          <a routerLink="/about" routerLinkActive="text-white border-b-2 border-[#D4AF37]" class="hover:text-white py-1 transition-colors relative text-slate-300 font-medium">
+            About Us
+          </a>
+          <a routerLink="/products" routerLinkActive="text-white border-b-2 border-[#D4AF37]" class="hover:text-white py-1 transition-colors relative text-slate-300 font-medium">
+            Products
+          </a>
+          <a routerLink="/process" routerLinkActive="text-white border-b-2 border-[#D4AF37]" class="hover:text-white py-1 transition-colors relative text-slate-300 font-medium">
+            Production
+          </a>
+          <a routerLink="/trade" routerLinkActive="text-white border-b-2 border-[#D4AF37]" class="hover:text-white py-1 transition-colors relative text-slate-300 font-medium">
+            Trade Terms
+          </a>
+          <a routerLink="/markets" routerLinkActive="text-white border-b-2 border-[#D4AF37]" class="hover:text-white py-1 transition-colors relative text-slate-300 font-medium">
+            Export Markets
+          </a>
+          <a routerLink="/contact" routerLinkActive="text-white border-b-2 border-[#D4AF37]" class="hover:text-white py-1 transition-colors relative text-slate-300 font-medium">
+            Contact Us
+          </a>
+        </nav>
+
+        <!-- Get a Quote CTA Button -->
+        <div class="hidden lg:flex items-center gap-4">
+          <a routerLink="/contact" class="bg-[#D4AF37] hover:bg-[#c4a132] text-[#0A2540] px-5 py-2 rounded-full font-bold text-xs uppercase transition-all shadow-md flex items-center gap-1.5 cursor-pointer">
+            <mat-icon class="text-xs text-[#0A2540]">request_quote</mat-icon>
+            Get a Quote
+          </a>
+        </div>
+
+        <!-- Mobile Menu Toggle Button -->
+        <div class="lg:hidden flex items-center">
+          <button type="button" (click)="toggleMobileMenu()" class="p-2 text-slate-300 hover:text-white focus:outline-none" aria-label="Toggle menu">
+            <mat-icon>{{ mobileMenuOpen() ? 'close' : 'menu' }}</mat-icon>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mobile Navigation Drawer -->
+    @if (mobileMenuOpen()) {
+      <div class="lg:hidden bg-[#0A2540] border-b border-white/10 transition-all duration-300">
+        <div class="px-2 pt-2 pb-4 space-y-1 sm:px-3 text-base font-medium">
+          <a routerLink="/" (click)="closeMobileMenu()" class="block w-full text-left px-3 py-2.5 rounded-md hover:bg-white/5 text-slate-300 hover:text-white">Home</a>
+          <a routerLink="/about" (click)="closeMobileMenu()" class="block w-full text-left px-3 py-2.5 rounded-md hover:bg-white/5 text-slate-300 hover:text-white">About Us</a>
+          <a routerLink="/products" (click)="closeMobileMenu()" class="block w-full text-left px-3 py-2.5 rounded-md hover:bg-white/5 text-slate-300 hover:text-white">Products</a>
+          <a routerLink="/process" (click)="closeMobileMenu()" class="block w-full text-left px-3 py-2.5 rounded-md hover:bg-white/5 text-slate-300 hover:text-white">Production Process</a>
+          <a routerLink="/trade" (click)="closeMobileMenu()" class="block w-full text-left px-3 py-2.5 rounded-md hover:bg-white/5 text-slate-300 hover:text-white">Trade Terms</a>
+          <a routerLink="/markets" (click)="closeMobileMenu()" class="block w-full text-left px-3 py-2.5 rounded-md hover:bg-white/5 text-slate-300 hover:text-white">Export Markets</a>
+          <a routerLink="/contact" (click)="closeMobileMenu()" class="block w-full text-left px-3 py-2.5 rounded-md hover:bg-white/5 text-slate-300 hover:text-white">Contact Us</a>
+          <div class="pt-4 pb-2 px-3">
+            <a routerLink="/contact" (click)="closeMobileMenu()" class="w-full py-3 bg-[#D4AF37] hover:bg-[#c4a132] text-[#0A2540] rounded-full font-bold text-xs uppercase shadow-sm text-center block">
+              Get a Quote
+            </a>
+          </div>
+        </div>
+      </div>
+    }
+  </header>
+
+  <!-- ROUTED PAGE OUTLET (Dynamic Main View) -->
+  <main class="flex-grow">
+    <router-outlet></router-outlet>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="bg-slate-950 text-white border-t border-slate-900 mt-auto py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 lg:gap-12 pb-12 border-b border-slate-900">
+        
+        <!-- Left details col -->
+        <div class="lg:col-span-5 space-y-4">
+          <div class="flex items-center gap-3">
+            <div class="flex items-center justify-center w-10 h-10 bg-brand-blue text-brand-gold font-display font-bold text-lg rounded shadow-inner border border-brand-gold/20">
+              JP
+            </div>
+            <div>
+              <span class="font-display font-bold text-xl tracking-wide block">JP EXIM</span>
+              <span class="text-[9px] uppercase tracking-widest text-slate-400 leading-none">Global Trade • Trusted Exports</span>
+            </div>
+          </div>
+          <p class="text-slate-400 text-xs leading-relaxed font-light max-w-sm">
+            Gujarat-based agricultural exporter committed to international specifications, reliable cold-chain preservation, and secure banking compliance rules.
+          </p>
+          <div class="pt-4 flex gap-4 text-xs font-mono text-slate-500">
+            <span>IEC: GUXPP6168P</span>
+            <span>|</span>
+            <span>GSTIN: 24GUXPP6168P1Z8</span>
+          </div>
+        </div>
+
+        <!-- Middle Quick Links col -->
+        <div class="lg:col-span-3 space-y-4">
+          <h4 class="font-display font-bold text-brand-gold text-sm uppercase tracking-wider">Trading Divisions</h4>
+          <ul class="space-y-2 text-xs text-slate-400 list-none pl-0">
+            <li><a routerLink="/products" class="hover:text-white hover:underline transition-all text-left block cursor-pointer">Fresh Potatoes Division</a></li>
+            <li><a routerLink="/products" class="hover:text-white hover:underline transition-all text-left block cursor-pointer">Gujarat Peanuts Division</a></li>
+            <li><a routerLink="/process" class="hover:text-white hover:underline transition-all text-left block cursor-pointer">Cold Chain Sourcing</a></li>
+            <li><a routerLink="/trade" class="hover:text-white hover:underline transition-all text-left block cursor-pointer">Logistics &amp; Incoterms</a></li>
+          </ul>
+        </div>
+
+        <!-- Middle Quick Links col 2 -->
+        <div class="lg:col-span-2 space-y-4">
+          <h4 class="font-display font-bold text-brand-gold text-sm uppercase tracking-wider">Information</h4>
+          <ul class="space-y-2 text-xs text-slate-400 list-none pl-0">
+            <li><a routerLink="/about" class="hover:text-white hover:underline transition-all text-left block cursor-pointer">About Company</a></li>
+            <li><a routerLink="/trade" class="hover:text-white hover:underline transition-all text-left block cursor-pointer">Payment Methods</a></li>
+            <li><a routerLink="/markets" class="hover:text-white hover:underline transition-all text-left block cursor-pointer">Target Ports</a></li>
+            <li><a routerLink="/contact" class="hover:text-white hover:underline transition-all text-left block cursor-pointer">Contact Desk</a></li>
+          </ul>
+        </div>
+
+        <!-- Quick Help col -->
+        <div class="lg:col-span-2 space-y-4">
+          <h4 class="font-display font-bold text-brand-gold text-sm uppercase tracking-wider font-mono">B2B Quick Call</h4>
+          <p class="text-slate-400 text-xs font-light leading-relaxed">Direct constant line to Mr. Pradip Padhiyar:</p>
+          <a href="tel:+917046058487" class="block font-mono text-base font-bold text-white hover:text-brand-gold transition-colors">+91 7046058487</a>
+          <span class="text-[9px] text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 px-2 py-0.5 rounded uppercase font-mono tracking-wider font-bold inline-block mt-1">AVAILABLE ON WHATSAPP</span>
+        </div>
+
+      </div>
+
+      <div class="flex flex-wrap justify-between items-center text-xs text-slate-500 gap-4">
+        <p>&copy; 2026 JP EXIM Company. All rights reserved globally. Sourced from Deesa, Gujarat, India.</p>
+        <div class="flex gap-4">
+          <a routerLink="/" class="hover:text-white cursor-pointer">Home</a>
+          <span>&middot;</span>
+          <a routerLink="/about" class="hover:text-white cursor-pointer">About</a>
+          <span>&middot;</span>
+          <a routerLink="/contact" class="hover:text-white cursor-pointer">Privacy Policy</a>
+        </div>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- FLOATING B2B TRADE SPECIALIST AI CHAT PANEL (Beautiful floating dialog) -->
+  <div class="fixed bottom-6 right-6 z-50 flex flex-col items-end">
+    
+    <!-- Floating Circular Trigger Button -->
+    <button type="button" (click)="toggleChat()" class="w-14 h-14 bg-brand-blue hover:bg-brand-blue-light text-white rounded-full shadow-2xl flex items-center justify-center transition-all duration-300 transform hover:scale-105 border border-brand-gold/30 hover:shadow-brand-gold/10 relative cursor-pointer" aria-label="Toggle AI Export Assistant Chat">
+      <mat-icon>{{ chatOpen() ? 'close' : 'support_agent' }}</mat-icon>
+      <!-- Real-time green dot -->
+      @if (!chatOpen()) {
+        <span class="absolute top-1 right-1 w-3.5 h-3.5 bg-emerald-500 rounded-full border-2 border-white animate-pulse"></span>
+      }
+    </button>
+
+    <!-- Chat Box Window -->
+    @if (chatOpen()) {
+      <div class="w-[350px] sm:w-[400px] h-[500px] bg-white rounded-2xl shadow-2xl border border-slate-100 flex flex-col overflow-hidden mt-3 transition-all duration-300 animate-slide-in">
+        
+        <!-- Chat Header -->
+        <div class="bg-brand-blue p-4 text-white flex justify-between items-center border-b border-white/10">
+          <div class="flex items-center gap-3">
+            <div class="w-9 h-9 rounded-full bg-brand-gold/15 flex items-center justify-center border border-brand-gold/20">
+              <span class="text-sm" aria-hidden="true">🏢</span>
+            </div>
+            <div>
+              <h4 class="font-display font-bold text-sm">JP EXIM Export Desk</h4>
+              <span class="text-[10px] text-emerald-400 font-semibold block leading-none mt-0.5">● Virtual Export Coordinator</span>
+            </div>
+          </div>
+          <div class="flex items-center gap-2">
+            <button type="button" (click)="clearChat()" class="p-1.5 text-slate-300 hover:text-white rounded hover:bg-white/10 cursor-pointer flex items-center justify-center" title="Reset Conversation" aria-label="Reset Conversation">
+              <mat-icon class="text-base">delete_sweep</mat-icon>
+            </button>
+            <button type="button" (click)="toggleChat()" class="p-1.5 text-slate-300 hover:text-white rounded hover:bg-white/10 cursor-pointer flex items-center justify-center" aria-label="Close Chat">
+              <mat-icon class="text-base">close</mat-icon>
+            </button>
+          </div>
+        </div>
+
+        <!-- Messages Window Scroll -->
+        <div id="chat-message-container" class="flex-1 overflow-y-auto p-4 space-y-4 bg-slate-50/50">
+          
+          <!-- Loop messages -->
+          @for (msg of chatMessages(); track msg) {
+            <div class="flex flex-col" [class.items-end]="msg.role === 'user'" [class.items-start]="msg.role === 'model'">
+              
+              <div class="max-w-[85%] rounded-2xl p-3 text-xs leading-relaxed"
+                [class.bg-brand-blue]="msg.role === 'user'"
+                [class.text-white]="msg.role === 'user'"
+                [class.rounded-tr-none]="msg.role === 'user'"
+                [class.bg-white]="msg.role === 'model'"
+                [class.text-slate-700]="msg.role === 'model'"
+                [class.rounded-tl-none]="msg.role === 'model'"
+                [class.border]="msg.role === 'model'"
+                [class.border-slate-100]="msg.role === 'model'"
+                [class.shadow-sm]="msg.role === 'model'">
+                
+                <!-- Render line breaks and bold blocks correctly via formatMessageText -->
+                <p class="whitespace-pre-wrap" [innerHTML]="formatMessageText(msg.text)"></p>
+              </div>
+              
+              <span class="text-[9px] text-slate-400 font-mono mt-1 px-1">
+                {{ msg.role === 'user' ? 'Importer' : 'Trade Desk' }}
+              </span>
+            </div>
+          }
+
+          <!-- Loading animation -->
+          @if (chatLoading()) {
+            <div class="flex items-center gap-2 p-3 bg-white rounded-2xl border border-slate-100 max-w-[50%] shadow-sm">
+              <span class="w-1.5 h-1.5 bg-brand-blue rounded-full animate-bounce"></span>
+              <span class="w-1.5 h-1.5 bg-brand-blue rounded-full animate-bounce delay-75"></span>
+              <span class="w-1.5 h-1.5 bg-brand-blue rounded-full animate-bounce delay-150"></span>
+            </div>
+          }
+
+        </div>
+
+        <!-- Direct WhatsApp Connect Promo Block -->
+        <div class="px-3 py-2 bg-emerald-50 border-t border-slate-100 flex justify-between items-center text-[10px]">
+          <span class="text-emerald-800 font-medium flex items-center gap-1">
+            <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse inline-block"></span>
+            Direct Desk: Mr. Pradip Padhiyar
+          </span>
+          <a href="https://wa.me/917046058487?text=Hi%20Pradip,%20I%20am%20interested%20in%20JP%20EXIM%20agricultural%20exports." target="_blank" rel="noopener" class="px-2 py-0.5 bg-emerald-500 hover:bg-emerald-600 text-white font-bold rounded text-[9px] uppercase tracking-wider flex items-center gap-0.5 transition-all">
+            <mat-icon class="text-[11px] w-3 h-3 min-w-3 min-h-3 flex items-center justify-center">chat</mat-icon>
+            WhatsApp
+          </a>
+        </div>
+
+        <!-- Quick Suggestion Chips inside Chat Panel -->
+        <div class="p-2 border-t border-slate-100 bg-slate-50 overflow-x-auto whitespace-nowrap flex gap-2 scrollbar-none">
+          @for (chip of suggestionChips; track chip) {
+            <button type="button" (click)="useSuggestion(chip)" (keydown.enter)="useSuggestion(chip)" class="px-3 py-1.5 bg-white hover:bg-brand-blue hover:text-white rounded-full border border-slate-100 text-[10px] text-slate-600 font-medium transition-colors cursor-pointer inline-block">
+              {{ chip }}
+            </button>
+          }
+        </div>
+
+        <!-- Message input field -->
+        <div class="p-3 bg-white border-t border-slate-100 flex items-center gap-2">
+          <input type="text" [value]="chatInputText()" (input)="chatInputText.set($any($event.target).value)" (keyup.enter)="sendChatMessage(chatInputText())" placeholder="Type B2B trading questions here..." class="flex-1 px-4 py-2 bg-slate-50 border border-slate-200 focus:border-brand-blue focus:bg-white rounded-lg text-xs focus:outline-none transition-all" aria-label="Chat input field" />
+          <button type="button" (click)="sendChatMessage(chatInputText())" class="p-2 bg-brand-blue hover:bg-brand-blue-light text-white rounded-lg shadow hover:shadow-md transition-all cursor-pointer" aria-label="Send Chat Message">
+            <mat-icon class="text-sm">send</mat-icon>
+          </button>
+        </div>
+
+      </div>
+    }
+
+  </div>
+
+</div>

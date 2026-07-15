@@ -1,0 +1,265 @@
+<!-- LEAD GENERATION & CONTACT US SECTION -->
+<section id="contact" class="py-24 bg-slate-50">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <div class="grid lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+      
+      <!-- Corporate Details column -->
+      <div class="lg:col-span-5 space-y-8">
+        <div class="space-y-4">
+          <span class="text-sm font-bold text-brand-gold tracking-widest uppercase block">CONTACT B2B EXPERT</span>
+          <h2 class="font-display font-bold text-3xl sm:text-4xl text-brand-blue">Ready for Global Dispatch?</h2>
+          <div class="w-16 h-1 bg-brand-gold rounded-full"></div>
+          <p class="text-slate-500 text-sm leading-relaxed mt-4">
+            Get in touch with Mr. Pradip Padhiyar for direct B2B pricing, customized container loading estimates, and standard trading contract negotiations. Our response team processes international quotations in less than 12 hours.
+          </p>
+        </div>
+
+        <!-- Corporate Card layout -->
+        <div class="bg-white rounded-2xl p-6 border border-slate-100 shadow-sm space-y-6">
+          <div class="flex items-center gap-4">
+            <div class="w-16 h-16 bg-brand-blue text-brand-gold rounded-full flex items-center justify-center font-bold text-xl border border-brand-gold/20 shadow-sm">
+              PP
+            </div>
+            <div>
+              <span class="text-xs text-slate-400 font-mono block">PROPRIETOR &amp; SIGNATORY</span>
+              <p class="text-lg font-bold text-brand-blue font-display">Pradip Jitendrkumar Padhiyar</p>
+              <div class="flex items-center gap-2 mt-1">
+                <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+                <span class="text-xs text-emerald-600 font-semibold">Active on WhatsApp</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="border-t border-slate-100 pt-6 space-y-4 text-sm text-slate-600">
+            <div class="flex items-start gap-3">
+              <mat-icon class="text-brand-gold">phone_iphone</mat-icon>
+              <div>
+                <span class="block text-xs text-slate-400">Direct Trade Line</span>
+                <a href="tel:+917046058487" class="font-mono font-bold text-slate-800 hover:text-brand-blue transition-colors block">+91 7046058487</a>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-3">
+              <mat-icon class="text-brand-gold">email</mat-icon>
+              <div>
+                <span class="block text-xs text-slate-400">B2B Trade Desk Email</span>
+                <p class="font-mono font-bold text-slate-800">padhiyarpradip1&#64;gmail.com</p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-3">
+              <mat-icon class="text-brand-gold">business</mat-icon>
+              <div>
+                <span class="block text-xs text-slate-400">Registered Office Address</span>
+                <p class="text-slate-600 text-xs leading-relaxed font-light">
+                  Plot No. 60, Vedanta Bungalows, Highway Road, Near Laxmi Vandana, Deesa, Banas Kantha, Gujarat - 385535, India.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Corporate credentials block -->
+        <div class="p-6 bg-white rounded-2xl border border-slate-100 shadow-sm space-y-3">
+          <h4 class="text-xs font-bold text-brand-blue font-mono uppercase tracking-widest">Government Registrations</h4>
+          <div class="flex items-center gap-3 text-xs text-slate-600">
+            <mat-icon class="text-brand-gold">verified</mat-icon>
+            <span><strong>IEC Code:</strong> GUXPP6168P</span>
+          </div>
+          <div class="flex items-center gap-3 text-xs text-slate-600">
+            <mat-icon class="text-brand-gold">verified</mat-icon>
+            <span><strong>GSTIN:</strong> 24GUXPP6168P1Z8</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Interactive Lead Generator Form -->
+      <div class="lg:col-span-7 bg-white rounded-3xl p-6 sm:p-10 border border-slate-100 shadow-md">
+        <div class="pb-6 border-b border-slate-100 mb-6">
+          <h3 class="text-xl font-bold text-brand-blue font-display">B2B Quote Request &amp; Inquiry</h3>
+          <p class="text-slate-400 text-xs mt-1">Fill out the fields below. Settle details to instantly generate a tailored corporate draft response.</p>
+        </div>
+
+        <!-- Angular Reactive Form (No ngModel!) -->
+        @if (!inquirySuccess()) {
+          <form [formGroup]="inquiryForm" (ngSubmit)="submitInquiry()" class="space-y-5">
+            <div class="grid sm:grid-cols-2 gap-5">
+              <!-- Name -->
+              <div>
+                <label for="name_input" class="block text-xs font-bold uppercase text-slate-600 mb-1.5">Full Name <span class="text-red-500">*</span></label>
+                <input id="name_input" type="text" formControlName="name" placeholder="Importer Name" class="w-full px-4 py-3 bg-slate-50 border border-slate-200 focus:border-brand-blue focus:bg-white rounded-lg text-sm transition-all focus:outline-none" />
+                @if (inquiryForm.get('name')?.touched && inquiryForm.get('name')?.invalid) {
+                  <p class="text-red-500 text-[10px] mt-1">Name is required (min 2 chars).</p>
+                }
+              </div>
+
+              <!-- Company -->
+              <div>
+                <label for="company_input" class="block text-xs font-bold uppercase text-slate-600 mb-1.5">Company Name <span class="text-red-500">*</span></label>
+                <input id="company_input" type="text" formControlName="company" placeholder="e.g. Al-Taj Food Distributors" class="w-full px-4 py-3 bg-slate-50 border border-slate-200 focus:border-brand-blue focus:bg-white rounded-lg text-sm transition-all focus:outline-none" />
+                @if (inquiryForm.get('company')?.touched && inquiryForm.get('company')?.invalid) {
+                  <p class="text-red-500 text-[10px] mt-1">Company is required.</p>
+                }
+              </div>
+            </div>
+
+            <div class="grid sm:grid-cols-2 gap-5">
+              <!-- Country -->
+              <div>
+                <label for="country_input" class="block text-xs font-bold uppercase text-slate-600 mb-1.5">Country / Target Port <span class="text-red-500">*</span></label>
+                <input id="country_input" type="text" formControlName="country" placeholder="e.g. UAE (Jebel Ali)" class="w-full px-4 py-3 bg-slate-50 border border-slate-200 focus:border-brand-blue focus:bg-white rounded-lg text-sm transition-all focus:outline-none" />
+                @if (inquiryForm.get('country')?.touched && inquiryForm.get('country')?.invalid) {
+                  <p class="text-red-500 text-[10px] mt-1">Country is required.</p>
+                }
+              </div>
+
+              <!-- Email -->
+              <div>
+                <label for="email_input" class="block text-xs font-bold uppercase text-slate-600 mb-1.5">Email Address <span class="text-red-500">*</span></label>
+                <input id="email_input" type="email" formControlName="email" placeholder="trade@company.com" class="w-full px-4 py-3 bg-slate-50 border border-slate-200 focus:border-brand-blue focus:bg-white rounded-lg text-sm transition-all focus:outline-none" />
+                @if (inquiryForm.get('email')?.touched && inquiryForm.get('email')?.invalid) {
+                  <p class="text-red-500 text-[10px] mt-1">Valid trade email is required.</p>
+                }
+              </div>
+            </div>
+
+            <div class="grid sm:grid-cols-3 gap-5">
+              <!-- Phone -->
+              <div class="sm:col-span-1">
+                <label for="phone_input" class="block text-xs font-bold uppercase text-slate-600 mb-1.5">Phone/WhatsApp <span class="text-red-500">*</span></label>
+                <input id="phone_input" type="text" formControlName="phone" placeholder="+971 50..." class="w-full px-4 py-3 bg-slate-50 border border-slate-200 focus:border-brand-blue focus:bg-white rounded-lg text-sm transition-all focus:outline-none" />
+                @if (inquiryForm.get('phone')?.touched && inquiryForm.get('phone')?.invalid) {
+                  <p class="text-red-500 text-[10px] mt-1">Phone is required.</p>
+                }
+              </div>
+
+              <!-- Product Dropdown -->
+              <div class="sm:col-span-1">
+                <label for="product_select" class="block text-xs font-bold uppercase text-slate-600 mb-1.5">Product of Interest <span class="text-red-500">*</span></label>
+                <select id="product_select" formControlName="product" class="w-full px-4 py-3 bg-slate-50 border border-slate-200 focus:border-brand-blue focus:bg-white rounded-lg text-sm transition-all focus:outline-none">
+                  <option value="Fresh Potatoes">Potato (Fresh)</option>
+                  <option value="Peanuts">Peanuts (Groundnuts)</option>
+                  <option value="Both">Both Crops</option>
+                </select>
+              </div>
+
+              <!-- Quantity -->
+              <div class="sm:col-span-1">
+                <label for="quantity_input" class="block text-xs font-bold uppercase text-slate-600 mb-1.5">Quantity (Tons) <span class="text-red-500">*</span></label>
+                <input id="quantity_input" type="number" formControlName="quantity" placeholder="Min. 10 Tons" class="w-full px-4 py-3 bg-slate-50 border border-slate-200 focus:border-brand-blue focus:bg-white rounded-lg text-sm transition-all focus:outline-none" />
+                @if (inquiryForm.get('quantity')?.touched && inquiryForm.get('quantity')?.invalid) {
+                  <p class="text-red-500 text-[10px] mt-1">Enter valid tons (min 1).</p>
+                }
+              </div>
+            </div>
+
+            <!-- Message -->
+            <div>
+              <label for="message_input" class="block text-xs font-bold uppercase text-slate-600 mb-1.5">Custom Sizing / Pack Requirements</label>
+              <textarea id="message_input" formControlName="message" rows="3" placeholder="Enter packaging, incoterm (FOB/CIF), size preference, or timing requirements..." class="w-full px-4 py-3 bg-slate-50 border border-slate-200 focus:border-brand-blue focus:bg-white rounded-lg text-sm transition-all focus:outline-none resize-none"></textarea>
+            </div>
+
+            <!-- Submit button -->
+            <button type="submit" [disabled]="inquirySubmitting()" class="w-full py-4 bg-brand-blue hover:bg-brand-blue-light disabled:bg-slate-300 text-white font-bold rounded-lg shadow transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer">
+              @if (inquirySubmitting()) {
+                <mat-icon class="animate-spin text-brand-gold text-sm">sync</mat-icon>
+              }
+              <span>{{ inquirySubmitting() ? 'PROCESSING EXPORT QUOTATION...' : 'SUBMIT INQUIRY & GENERATE DRAFT CONTRACT' }}</span>
+            </button>
+          </form>
+        }
+
+        <!-- PROPOSAL DRAFT SUCCESS PANEL (Elite custom craftsmanship) -->
+        @if (inquirySuccess()) {
+          <div class="space-y-6">
+            <div class="p-5 bg-emerald-50 border border-emerald-200 text-emerald-800 rounded-2xl flex items-start gap-3">
+              <mat-icon class="text-emerald-500 text-2xl">check_circle</mat-icon>
+              <div>
+                <h4 class="font-bold text-base">Inquiry Successfully Registered</h4>
+                <p class="text-xs text-emerald-600 mt-1 leading-relaxed">
+                  {{ followUpMessage() }}
+                </p>
+              </div>
+            </div>
+
+            <div class="space-y-3">
+              <div class="flex justify-between items-center">
+                <span class="text-xs font-mono font-bold text-slate-400">GENERATED B2B TRADE OFFER DRAFT</span>
+                <div class="flex items-center gap-2">
+                  <button type="button" (click)="copyProposalToClipboard()" class="p-2 text-slate-500 hover:text-brand-blue bg-slate-100 hover:bg-slate-200 rounded-lg text-xs font-medium flex items-center gap-1 cursor-pointer" title="Copy Text">
+                    <mat-icon class="text-sm">content_copy</mat-icon>
+                    Copy
+                  </button>
+                  <button type="button" (click)="downloadProposalAsFile()" class="p-2 text-slate-500 hover:text-brand-blue bg-slate-100 hover:bg-slate-200 rounded-lg text-xs font-medium flex items-center gap-1 cursor-pointer" title="Download File">
+                    <mat-icon class="text-sm">download</mat-icon>
+                    Download .txt
+                  </button>
+                </div>
+              </div>
+
+              <!-- Text Area holding the drafted letter -->
+              <div class="p-5 bg-slate-900 text-slate-100 font-mono text-xs leading-relaxed rounded-xl overflow-x-auto whitespace-pre-wrap max-h-96 border border-slate-800">
+                {{ draftedProposal() }}
+              </div>
+            </div>
+
+            <button type="button" (click)="resetInquiryForm()" class="w-full py-3.5 border border-slate-200 hover:border-slate-300 text-slate-600 font-semibold rounded-lg text-sm transition-all flex items-center justify-center gap-2 cursor-pointer">
+              <mat-icon class="text-sm">replay</mat-icon>
+              Submit Another Trade Inquiry
+            </button>
+          </div>
+        }
+
+      </div>
+
+    </div>
+
+    <!-- GOOGLE MAP PINPOINTING DEESA, GUJARAT, INDIA -->
+    <div class="mt-16 bg-white rounded-3xl p-6 sm:p-8 border border-slate-100 shadow-md">
+      <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-6">
+        <div>
+          <span class="text-xs font-bold text-brand-gold tracking-widest uppercase block mb-1">Origin Sourcing &amp; Logistics Hub</span>
+          <h3 class="text-xl font-bold text-[#0A2540] font-display">JP EXIM Deesa Headquarters</h3>
+          <p class="text-slate-400 text-xs mt-1">
+            Plot No. 60, Vedanta Bungalows, Highway Road, Near Laxmi Vandana, Deesa, Banas Kantha, Gujarat - 385535, India.
+          </p>
+        </div>
+        <a href="https://maps.google.com/maps?q=Plot%20No.%2060,%20Vedanta%20Bungalows,%20Highway%20Road,%20Near%20Laxmi%20Vandana,%20Deesa,%20Banas%20Kantha,%20Gujarat%20-%20385535,%20India" target="_blank" rel="noopener" class="px-4 py-2.5 bg-slate-100 hover:bg-brand-blue hover:text-white rounded-xl text-xs font-semibold flex items-center gap-1.5 transition-all text-slate-700 cursor-pointer">
+          <mat-icon class="text-sm">open_in_new</mat-icon>
+          Open in Google Maps
+        </a>
+      </div>
+      
+      <!-- Interactive Responsive Map Container -->
+      <div class="relative w-full h-[350px] sm:h-[450px] rounded-2xl overflow-hidden border border-slate-100 shadow-inner">
+        <iframe 
+          id="deesa-map-iframe"
+          class="absolute inset-0 w-full h-full border-0"
+          src="https://maps.google.com/maps?q=Plot%20No.%2060,%20Vedanta%20Bungalows,%20Highway%20Road,%20Near%20Laxmi%20Vandana,%20Deesa,%20Banas%20Kantha,%20Gujarat%20-%20385535,%20India&t=&z=14&ie=UTF8&iwloc=&output=embed"
+          allowfullscreen="" 
+          loading="lazy" 
+          referrerpolicy="no-referrer-when-downgrade"
+          title="JP EXIM Deesa Location Pin Map">
+        </iframe>
+      </div>
+      
+      <!-- Location Info Badges -->
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-6 pt-6 border-t border-slate-100 text-xs text-slate-500 font-mono">
+        <div class="flex items-center gap-2">
+          <mat-icon class="text-[#D4AF37] text-sm">location_on</mat-icon>
+          <span>Latitude: 24.2522° N</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <mat-icon class="text-[#D4AF37] text-sm">explore</mat-icon>
+          <span>Longitude: 72.1071° E</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <mat-icon class="text-[#D4AF37] text-sm">agriculture</mat-icon>
+          <span>Region: Banas Kantha (Potato Hub)</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>

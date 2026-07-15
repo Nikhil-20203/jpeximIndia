@@ -1,0 +1,237 @@
+<!-- PRODUCTS CATALOG SECTION -->
+<section id="products" class="py-24 bg-slate-50">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <!-- Section Title Header -->
+    <div class="text-center max-w-3xl mx-auto mb-16">
+      <span class="text-sm font-bold text-brand-gold tracking-widest uppercase block mb-3">EXPORT PORTFOLIO</span>
+      <h2 class="font-display font-bold text-3xl sm:text-4xl text-brand-blue">Our Premium Products</h2>
+      <div class="w-16 h-1 bg-brand-gold mx-auto mt-4 rounded-full"></div>
+      <p class="text-slate-500 text-lg mt-6">
+        Explore our certified catalog and detailed trading specifications. All shipments are optimized for safe, extended ocean transport.
+      </p>
+    </div>
+
+    <!-- Tab Selectors for Products -->
+    <div class="flex justify-center mb-12 border-b border-slate-200">
+      <div class="flex gap-8">
+        <button type="button" (click)="setProductTab('potato')" class="px-8 py-4 text-xs font-bold uppercase tracking-wider transition-all duration-300 flex items-center gap-2 border-b-2 cursor-pointer"
+          [class.border-[#0A2540]]="currentProductTab() === 'potato'"
+          [class.border-transparent]="currentProductTab() !== 'potato'"
+          [class.text-[#0A2540]]="currentProductTab() === 'potato'"
+          [class.text-slate-400]="currentProductTab() !== 'potato'"
+          [class.hover:text-[#0A2540]]="currentProductTab() !== 'potato'">
+          🥔 Fresh Potatoes
+        </button>
+        <button type="button" (click)="setProductTab('peanut')" class="px-8 py-4 text-xs font-bold uppercase tracking-wider transition-all duration-300 flex items-center gap-2 border-b-2 cursor-pointer"
+          [class.border-[#0A2540]]="currentProductTab() === 'peanut'"
+          [class.border-transparent]="currentProductTab() !== 'peanut'"
+          [class.text-[#0A2540]]="currentProductTab() === 'peanut'"
+          [class.text-slate-400]="currentProductTab() !== 'peanut'"
+          [class.hover:text-[#0A2540]]="currentProductTab() !== 'peanut'">
+          🥜 Premium Peanuts
+        </button>
+      </div>
+    </div>
+
+    <!-- POTATO PRODUCT PANEL -->
+    @if (currentProductTab() === 'potato') {
+      <div class="grid lg:grid-cols-12 gap-12 items-center bg-white rounded-3xl p-6 sm:p-10 border border-slate-100 shadow-md">
+        <!-- Potato Specifications -->
+        <div class="lg:col-span-6 space-y-6">
+          <div class="space-y-2">
+            <span class="text-xs uppercase font-mono tracking-wider text-brand-gold font-bold">CATEGORY A1 FRESH CROPS</span>
+            <h3 class="text-2xl sm:text-3xl font-display font-bold text-brand-blue">100% Farm-Fresh Potatoes</h3>
+            <p class="text-slate-500 text-sm leading-relaxed">
+              Gujarat and specifically the Deesa region produces potato varieties with high dry matter content, making them perfectly skin-firm and exceptionally stable in shelf life. Our potatoes are fully checked for soil removal and preliminary damages.
+            </p>
+          </div>
+
+          <!-- Specs List Table -->
+          <div class="border border-slate-100 rounded-xl overflow-hidden shadow-sm">
+            <div class="grid grid-cols-12 bg-slate-50 px-4 py-3 border-b border-slate-100 text-xs font-mono text-slate-400">
+              <span class="col-span-5 uppercase">Specification</span>
+              <span class="col-span-7 uppercase">Standard Export Range</span>
+            </div>
+            
+            <div class="divide-y divide-slate-100 text-sm">
+              <div class="grid grid-cols-12 px-4 py-3">
+                <span class="col-span-5 font-bold text-slate-700">Origin</span>
+                <span class="col-span-7 text-slate-600">Gujarat, India (Deesa Hub)</span>
+              </div>
+              <div class="grid grid-cols-12 px-4 py-3">
+                <span class="col-span-5 font-bold text-slate-700">HS Code</span>
+                <span class="col-span-7 text-slate-600">0701</span>
+              </div>
+              <div class="grid grid-cols-12 px-4 py-3">
+                <span class="col-span-5 font-bold text-slate-700">Shape</span>
+                <span class="col-span-7 text-slate-600">Round / Oval</span>
+              </div>
+              <div class="grid grid-cols-12 px-4 py-3">
+                <span class="col-span-5 font-bold text-slate-700">Storage</span>
+                <span class="col-span-7 text-slate-600">Clean, Temperature-Controlled Cold Storage</span>
+              </div>
+              <div class="grid grid-cols-12 px-4 py-3">
+                <span class="col-span-5 font-bold text-slate-700">Packing</span>
+                <span class="col-span-7 text-slate-600">25 kg / 50 kg Mesh Bags</span>
+              </div>
+              <div class="grid grid-cols-12 px-4 py-3">
+                <span class="col-span-5 font-bold text-slate-700">Container Capacity</span>
+                <span class="col-span-7 text-slate-600 font-mono text-xs">As per Buyer's Requirement</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Size options grid -->
+          <div>
+            <h4 class="font-bold text-slate-700 text-sm uppercase tracking-wide mb-3">Available Sizing Options</h4>
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+              <div class="bg-slate-50 p-3 rounded-lg border border-slate-100 text-center">
+                <span class="block text-lg font-bold text-brand-blue font-mono">35-45 mm</span>
+                <span class="text-xs text-slate-400">Small Sorting</span>
+              </div>
+              <div class="bg-slate-50 p-3 rounded-lg border border-slate-100 text-center">
+                <span class="block text-lg font-bold text-brand-blue font-mono">45-55 mm</span>
+                <span class="text-xs text-slate-400">Medium</span>
+              </div>
+              <div class="bg-slate-50 p-3 rounded-lg border border-slate-100 text-center">
+                <span class="block text-lg font-bold text-brand-blue font-mono">55-65 mm</span>
+                <span class="text-xs text-slate-400">Large Standard</span>
+              </div>
+              <div class="bg-slate-50 p-3 rounded-lg border border-slate-100 text-center">
+                <span class="block text-lg font-bold text-brand-blue font-mono">65 mm+</span>
+                <span class="text-xs text-slate-400">Extra Large Premium</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Potato Image column -->
+        <div class="lg:col-span-6">
+          <div class="relative overflow-hidden rounded-2xl border border-slate-100 shadow-md">
+            <img src="https://picsum.photos/seed/freshpotato/800/600" alt="Potato Yield" class="w-full object-cover h-[380px]" referrerpolicy="no-referrer" />
+            <div class="absolute top-4 right-4 bg-brand-blue text-brand-gold text-xs uppercase font-mono tracking-wider font-bold px-3 py-1.5 rounded-full shadow-sm border border-brand-gold/20">
+              100% natural &amp; fresh
+            </div>
+          </div>
+          <!-- Quote Assistant hint -->
+          <div class="bg-slate-50 border border-slate-100 p-4 rounded-xl mt-4 flex justify-between items-center text-sm">
+            <span class="text-slate-500 font-light">Need a customized size distribution profile?</span>
+            <button type="button" routerLink="/contact" class="text-brand-blue font-bold hover:underline text-left cursor-pointer">Specify in Inquiry →</button>
+          </div>
+        </div>
+      </div>
+    }
+
+    <!-- PEANUT PRODUCT PANEL -->
+    @if (currentProductTab() === 'peanut') {
+      <div class="grid lg:grid-cols-12 gap-12 items-center bg-white rounded-3xl p-6 sm:p-10 border border-slate-100 shadow-md">
+        <!-- Peanut Specifications -->
+        <div class="lg:col-span-6 space-y-6">
+          <div class="space-y-2">
+            <span class="text-xs uppercase font-mono tracking-wider text-brand-gold font-bold">HIGH OIL-YIELD GROUNDNUTS</span>
+            <h3 class="text-2xl sm:text-3xl font-display font-bold text-brand-blue">Premium Peanut (Groundnut)</h3>
+            <p class="text-slate-500 text-sm leading-relaxed">
+              Our premium peanuts are threshed and shelled with exceptional calibration, resulting in minimum broken skins and seeds. Moisture content is strictly guarded to prevent aflatoxin development during sea transport.
+            </p>
+          </div>
+
+          <!-- Specs List Table -->
+          <div class="border border-slate-100 rounded-xl overflow-hidden shadow-sm">
+            <div class="grid grid-cols-12 bg-slate-50 px-4 py-3 border-b border-slate-100 text-xs font-mono text-slate-400">
+              <span class="col-span-5 uppercase">Specification</span>
+              <span class="col-span-7 uppercase">Standard Export Range</span>
+            </div>
+            
+            <div class="divide-y divide-slate-100 text-sm">
+              <div class="grid grid-cols-12 px-4 py-3">
+                <span class="col-span-5 font-bold text-slate-700">Origin</span>
+                <span class="col-span-7 text-slate-600">Gujarat, India</span>
+              </div>
+              <div class="grid grid-cols-12 px-4 py-3">
+                <span class="col-span-5 font-bold text-slate-700">HS Code</span>
+                <span class="col-span-7 text-slate-600">1202</span>
+              </div>
+              <div class="grid grid-cols-12 px-4 py-3">
+                <span class="col-span-5 font-bold text-slate-700">Variety</span>
+                <span class="col-span-7 text-slate-600">Java / Bold</span>
+              </div>
+              <div class="grid grid-cols-12 px-4 py-3">
+                <span class="col-span-5 font-bold text-slate-700">Moisture</span>
+                <span class="col-span-7 text-slate-600">Max. 8% (Standardized)</span>
+              </div>
+              <div class="grid grid-cols-12 px-4 py-3">
+                <span class="col-span-5 font-bold text-slate-700">Admixture</span>
+                <span class="col-span-7 text-slate-600">Max. 1%</span>
+              </div>
+              <div class="grid grid-cols-12 px-4 py-3">
+                <span class="col-span-5 font-bold text-slate-700">Broken/Aflatoxin</span>
+                <span class="col-span-7 text-slate-600">Strictly as per Buyer's / Country Requirement</span>
+              </div>
+              <div class="grid grid-cols-12 px-4 py-3">
+                <span class="col-span-5 font-bold text-slate-700">Packing</span>
+                <span class="col-span-7 text-slate-600">25 kg / 50 kg PP Bags</span>
+              </div>
+              <div class="grid grid-cols-12 px-4 py-3">
+                <span class="col-span-5 font-bold text-slate-700">Storage</span>
+                <span class="col-span-7 text-slate-600">Clean &amp; Dry Warehouse Sited Facility</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Count/Ounce Sizing Options Grid -->
+          <div>
+            <div class="flex justify-between items-center mb-3">
+              <h4 class="font-bold text-slate-700 text-sm uppercase tracking-wide">Count / Ounce Calibration</h4>
+              <span class="text-[10px] bg-brand-gold/10 text-brand-blue font-mono px-2 py-0.5 rounded font-bold">1 Ounce = 28.35g</span>
+            </div>
+            
+            <div class="grid grid-cols-2 sm:grid-cols-5 gap-2 text-center text-sm font-mono">
+              <div class="bg-slate-50 p-2.5 rounded-lg border border-slate-100">
+                <span class="block font-bold text-brand-blue">38/42</span>
+                <span class="text-[10px] text-slate-400">Extra Large</span>
+              </div>
+              <div class="bg-slate-50 p-2.5 rounded-lg border border-slate-100">
+                <span class="block font-bold text-brand-blue">40/50</span>
+                <span class="text-[10px] text-slate-400">Large</span>
+              </div>
+              <div class="bg-slate-50 p-2.5 rounded-lg border border-slate-100">
+                <span class="block font-bold text-brand-blue">50/60</span>
+                <span class="text-[10px] text-slate-400">Medium</span>
+              </div>
+              <div class="bg-slate-50 p-2.5 rounded-lg border border-slate-100">
+                <span class="block font-bold text-brand-blue">60/70</span>
+                <span class="text-[10px] text-slate-400">Small</span>
+              </div>
+              <div class="bg-slate-50 p-2.5 rounded-lg border border-slate-100 col-span-2 sm:col-span-1">
+                <span class="block font-bold text-brand-blue">70/80</span>
+                <span class="text-[10px] text-slate-400">Extra Small</span>
+              </div>
+            </div>
+            <p class="text-slate-400 text-[10px] leading-relaxed mt-2.5 italic">
+              *Note: Count represents the number of kernels per ounce. A lower count indicates larger, premium-sized kernels.
+            </p>
+          </div>
+        </div>
+
+        <!-- Peanut Image column -->
+        <div class="lg:col-span-6">
+          <div class="relative overflow-hidden rounded-2xl border border-slate-100 shadow-md">
+            <img src="https://picsum.photos/seed/freshpeanuts/800/600" alt="Peanuts Yield" class="w-full object-cover h-[380px]" referrerpolicy="no-referrer" />
+            <div class="absolute top-4 right-4 bg-brand-blue text-brand-gold text-xs uppercase font-mono tracking-wider font-bold px-3 py-1.5 rounded-full shadow-sm border border-brand-gold/20">
+              JAVA &amp; BOLD SELECTION
+            </div>
+          </div>
+          <!-- Note block -->
+          <div class="bg-brand-blue/5 border border-brand-blue/10 p-4 rounded-xl mt-4 flex items-start gap-3">
+            <mat-icon class="text-brand-blue mt-0.5">info</mat-icon>
+            <p class="text-xs text-brand-blue leading-relaxed">
+              <strong>Specifications Customization:</strong> Sizing distributions, oil parameters, admixture limits, and special bag printing can be adjusted specifically to match importing standards of UAE, Singapore, Saudi Arabia, and European ports.
+            </p>
+          </div>
+        </div>
+      </div>
+    }
+
+  </div>
+</section>
