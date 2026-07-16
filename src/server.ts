@@ -1,11 +1,5 @@
-import {
-  AngularNodeAppEngine,
-  createNodeRequestHandler,
-  isMainModule,
-  writeResponseToNodeResponse,
-} from '@angular/ssr/node';
-import express from 'express';
-import {join} from 'node:path';
+import { AngularAppEngine, createRequestHandler } from '@angular/ssr'
+import { getAllowedHosts, getContext, getTrustProxyHeaders } from '@netlify/angular-runtime/app-engine.js'
 import { GoogleGenAI } from '@google/genai';
 import nodemailer from 'nodemailer';
 
@@ -22,13 +16,13 @@ let aiClient: GoogleGenAI | null = null;
 
 function getGeminiClient(): GoogleGenAI | null {
   if (aiClient) return aiClient;
-  
+
   const apiKey = process.env['GEMINI_API_KEY'];
   if (!apiKey) {
     console.warn('WARNING: GEMINI_API_KEY environment variable is not set. API routes will run in mock simulation mode.');
     return null;
   }
-  
+
   try {
     aiClient = new GoogleGenAI({
       apiKey: apiKey,
@@ -107,11 +101,10 @@ GUIDELINES FOR YOUR RESPONSES:
 /**
  * Endpoint for B2B Interactive Assistant Chat
  */
-app.post('/api/chat', async (req, res) => {
-  const { message, history } = req.body;
+async function handleChat(request: Request): Promise<Response> {
+  const { message, history } = await request.json();
   if (!message) {
-    res.status(400).json({ error: 'Message is required' });
-    return;
+    return Response.json({ error: 'Message is required' }, { status: 400 });
   }
 
   const ai = getGeminiClient();
@@ -130,8 +123,7 @@ app.post('/api/chat', async (req, res) => {
     } else {
       reply = `Welcome to **JP EXIM (Global Trade • Trusted Exports)**. I am Pradip Padhiyar's virtual export coordinator.\n\nWe specialize in high-end exports of **Farm-Fresh Potatoes** and **Premium Gujarat Peanuts (Groundnuts)** to global ports including UAE, Saudi Arabia, Oman, Qatar, and Southeast Asia.\n\nHow can I assist your import business today? Feel free to ask about potato sizing, peanut count options, payment terms, or our production timelines!`;
     }
-    res.json({ text: reply, simulated: true });
-    return;
+    return Response.json({ text: reply, simulated: true });
   }
 
   try {
@@ -151,11 +143,11 @@ app.post('/api/chat', async (req, res) => {
     });
 
     const response = await chat.sendMessage({ message: message });
-    res.json({ text: response.text });
+    return Response.json({ text: response.text });
   } catch (error) {
     const err = error as Error;
     console.error('Gemini Chat API Error:', err);
-    res.status(500).json({ error: 'Failed to process assistant response', details: err.message });
+    return Response.json({ error: 'Failed to process assistant response', details: err.message }, { status: 500 });
   }
 });
 
@@ -368,12 +360,11 @@ async function sendInquiryEmail(data: {
  * Endpoint for B2B Inquiry Processing
  * Analyzes inquiry payload and drafts a detailed, fully customized B2B Proforma Invoice / Business Quotation Draft
  */
-app.post('/api/inquiry', async (req, res) => {
-  const { name, company, country, email, phone, product, quantity, message } = req.body;
+async function handleInquiry(request: Request): Promise<Response> {
+  const { name, company, country, email, phone, product, quantity, message } = await request.json();
 
   if (!name || !email) {
-    res.status(400).json({ error: 'Name and Email are required fields' });
-    return;
+    return Response.json({ error: 'Name and Email are required fields' }, { status: 400 });
   }
 
   const inquiryId = Math.floor(1000 + Math.random() * 9000).toString();
@@ -430,7 +421,6 @@ Direct WhatsApp: +91 7046058487
       followUpMessage: `Thank you, ${name}! Your inquiry has been logged successfully and a copy has been sent to the desk of Mr. Padhiyar. A draft business proposal has been prepared for you below.`,
       simulated: true
     });
-    return;
   }
 
   try {
@@ -495,50 +485,26 @@ Keep the formatting clean with appropriate spacing, bold labels, and paragraphs.
   } catch (error) {
     const err = error as Error;
     console.error('Gemini Inquiry API Error:', err);
-    res.status(500).json({ error: 'Failed to process inquiry proposal', details: err.message });
+    return Response.json({ error: 'Failed to process inquiry proposal', details: err.message }, { status: 500 });
   }
-});
+}
 
-/**
- * Serve static files from /browser
- */
-app.use(
-  express.static(browserDistFolder, {
-    maxAge: '1y',
-    index: false,
-    redirect: false,
-  }),
-);
+export async function netlifyAppEngineHandler(request: Request): Promise<Response> {
+  const context = getContext()
 
-/**
- * Handle all other requests by rendering the Angular application.
- */
-app.use((req, res, next) => {
-  angularApp
-    .handle(req)
-    .then((response) =>
-      response ? writeResponseToNodeResponse(response, res) : next(),
-    )
-    .catch(next);
-});
+  const pathname = new URL(request.url).pathname
+  if (request.method === 'POST' && pathname === '/api/chat') {
+    return handleChat(request)
+  }
+  if (request.method === 'POST' && pathname === '/api/inquiry') {
+    return handleInquiry(request)
+  }
 
-/**
- * Start the server if this module is the main entry point, or it is ran via PM2.
- * The server listens on the port defined by the `PORT` environment variable, or defaults to 4000.
- */
-if (isMainModule(import.meta.url) || process.env['pm_id']) {
-  const port = process.env['PORT'] || 4000;
-  app.listen(port, (error) => {
-    if (error) {
-      throw error;
-    }
-
-    console.log(`Node Express server listening on http://localhost:${port}`);
-  });
+  const result = await angularAppEngine.handle(request, context)
+  return result || new Response('Not found', { status: 404 })
 }
 
 /**
- * Request handler used by the Angular CLI (for dev-server and during build) or Firebase Cloud Functions.
+ * The request handler used by the Angular CLI (dev-server and during build).
  */
-export const reqHandler = createNodeRequestHandler(app);
-
+export const reqHandler = createRequestHandler(netlifyAppEngineHandler)
