@@ -1,119 +1,246 @@
-<!-- TRADE COMPLIANCE & INCUTERMS SECTION -->
-<section id="trade" class="py-24 bg-slate-50 border-t border-slate-100">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<!-- JP EXIM B2B High-End Export Portal - Trade Compliance & Corporate Protocols -->
+<section id="trade" class="py-24 bg-slate-50 border-t border-slate-100 relative overflow-hidden">
+  
+  <!-- Subtle design elements for premium aesthetic -->
+  <div class="absolute inset-0 bg-[radial-gradient(#0a2540_0.8px,transparent_0.8px)] [background-size:24px_24px] opacity-10 pointer-events-none"></div>
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
     
     <!-- Section Title Header -->
     <div class="grid lg:grid-cols-12 gap-12 lg:gap-16 items-center mb-16">
-      <div class="lg:col-span-6 space-y-4">
-        <span class="text-sm font-bold text-brand-gold tracking-widest uppercase block">CORPORATE PROTOCOLS</span>
-        <h2 class="font-display font-bold text-3xl sm:text-4xl text-brand-blue">Trade Terms, Compliance &amp; Banking Protocols</h2>
-        <div class="w-16 h-1 bg-brand-gold rounded-full"></div>
+      <div class="lg:col-span-7 space-y-4">
+        <span class="text-xs font-bold text-brand-gold tracking-widest uppercase block">COMPLIANCE &amp; LOGISTICS</span>
+        <h2 class="font-display font-bold text-3xl sm:text-4xl text-brand-blue tracking-tight">Corporate Sourcing &amp; Export Protocols</h2>
+        <div class="w-20 h-1 bg-brand-gold rounded-full"></div>
       </div>
-      <div class="lg:col-span-6">
-        <p class="text-slate-500 text-sm leading-relaxed">
-          JP EXIM operates under globally recognized commercial standards. We prioritize financial transparency, strict contract adherence, and robust regulatory compliance with Indian agricultural export bodies to ensure worry-free corporate imports.
+      <div class="lg:col-span-5">
+        <p class="text-slate-500 text-sm leading-relaxed font-light">
+          JP EXIM operates under internationally verified commercial standards. We guarantee flawless transaction processing, full cold-chain transparency, and secure regulatory compliance with central Indian agricultural bodies.
         </p>
       </div>
     </div>
 
-    <!-- Trade Cards Grid -->
-    <div class="grid md:grid-cols-3 gap-8">
+    <!-- MAIN CORPORATE SECTIONS (MVC View rendering Model Data) -->
+    <div class="space-y-16">
       
-      <!-- Card 1: Incoterms -->
-      <div class="bg-white rounded-2xl p-8 border border-slate-100 shadow-sm space-y-6">
-        <div class="w-12 h-12 bg-brand-blue/5 text-brand-blue rounded-xl flex items-center justify-center">
-          <mat-icon class="text-brand-gold">anchor</mat-icon>
+      <!-- SECTION 1: INCOTERMS WE OFFER -->
+      <div class="bg-white rounded-3xl border border-slate-100 shadow-sm overflow-hidden grid lg:grid-cols-12 gap-0 transition-all duration-300 hover:shadow-md">
+        <!-- Content Column (Left) -->
+        <div class="p-8 sm:p-10 lg:col-span-7 flex flex-col justify-between space-y-8">
+          <div class="space-y-4">
+            <div class="flex items-center gap-3">
+              <span class="w-10 h-10 rounded-xl bg-brand-blue/5 text-brand-blue flex items-center justify-center border border-brand-blue/10">
+                <mat-icon class="text-brand-gold">anchor</mat-icon>
+              </span>
+              <h3 class="font-display font-bold text-xl sm:text-2xl text-brand-blue">1. Delivery Terms (Incoterms We Offer)</h3>
+            </div>
+            <p class="text-slate-500 text-xs leading-relaxed font-light">
+              We fully support the International Chamber of Commerce (ICC) delivery standards, allowing you to choose the exact level of logistics coverage and risk management your corporation requires:
+            </p>
+            
+            <!-- Incoterms Interactive Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4">
+              @for (term of incoterms(); track term.code) {
+                <div class="p-3.5 bg-slate-50 rounded-xl border border-slate-100 hover:border-brand-gold/30 hover:bg-white transition-all duration-200">
+                  <div class="flex items-center gap-2 mb-1.5">
+                    <span class="px-2 py-0.5 bg-[#0A2540] text-brand-gold font-mono text-[10px] font-bold rounded">
+                      {{ term.code }}
+                    </span>
+                    <span class="font-bold text-xs text-slate-800">{{ term.name }}</span>
+                  </div>
+                  <p class="text-[11px] text-slate-500 leading-normal font-light">
+                    {{ term.description }}
+                  </p>
+                </div>
+              }
+            </div>
+          </div>
+
+          <div class="pt-4 border-t border-slate-100 flex items-center gap-2 text-xs text-slate-400 font-mono">
+            <mat-icon class="text-xs text-brand-gold">info</mat-icon>
+            <span>FOB Mundra/Kandla Port is our standard recommended option.</span>
+          </div>
         </div>
-        <div class="space-y-3">
-          <h3 class="font-display font-bold text-lg text-brand-blue">1. Delivery Terms (Incoterms 2020)</h3>
-          <p class="text-slate-500 text-xs leading-relaxed font-light">
-            We support multiple International Chamber of Commerce (ICC) delivery profiles to match the logistical demands of your corporate team:
-          </p>
+
+        <!-- Image Column (Right) -->
+        <div class="lg:col-span-5 bg-slate-900 relative min-h-[300px] lg:min-h-full overflow-hidden flex flex-col">
+          <img 
+            src="/incoterms_chart.jpg" 
+            alt="JP EXIM Incoterms We Offer Logistics Diagram" 
+            class="absolute inset-0 w-full h-full object-cover opacity-90 transition-transform duration-700 hover:scale-105"
+            referrerpolicy="no-referrer" />
+          <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent flex flex-col justify-end p-6">
+            <span class="text-[10px] font-bold text-brand-gold tracking-wider uppercase">LOGISTICS &amp; SHIPPING</span>
+            <h4 class="text-white font-display font-bold text-lg mt-1">Global Freight Execution</h4>
+            <p class="text-slate-300 text-xs font-light mt-1">Multi-port container tracking, standard cargo booking, and certified customs clearing.</p>
+          </div>
         </div>
-        <ul class="text-xs text-slate-600 space-y-2 list-none pl-0">
-          <li class="flex items-start gap-2">
-            <span class="text-brand-gold font-bold">•</span>
-            <div><strong>FOB (Free On Board):</strong> Mundra Port or Kandla Port. Highly cost-effective for buyers with existing freight contracts.</div>
-          </li>
-          <li class="flex items-start gap-2">
-            <span class="text-brand-gold font-bold">•</span>
-            <div><strong>CIF (Cost, Insurance &amp; Freight):</strong> We arrange secure booking to Jebel Ali (UAE), Dammam (Saudi Arabia), or other global destination ports.</div>
-          </li>
-          <li class="flex items-start gap-2">
-            <span class="text-brand-gold font-bold">•</span>
-            <div><strong>CFR (Cost and Freight):</strong> Safe ocean transit to custom ports with buyer managing marine insurance coverage.</div>
-          </li>
-        </ul>
       </div>
 
-      <!-- Card 2: Payments -->
-      <div class="bg-white rounded-2xl p-8 border border-slate-100 shadow-sm space-y-6">
-        <div class="w-12 h-12 bg-brand-blue/5 text-brand-blue rounded-xl flex items-center justify-center">
-          <mat-icon class="text-brand-gold">account_balance</mat-icon>
+      <!-- SECTION 2: PAYMENT TERMS -->
+      <div class="bg-white rounded-3xl border border-slate-100 shadow-sm overflow-hidden grid lg:grid-cols-12 gap-0 transition-all duration-300 hover:shadow-md">
+        <!-- Image Column (Left on Large, Right on small for grid-flow) -->
+        <div class="lg:col-span-5 lg:order-1 bg-slate-900 relative min-h-[300px] lg:min-h-full overflow-hidden flex flex-col">
+          <img 
+            src="/payment_chart.jpg" 
+            alt="JP EXIM Payment Terms Secure Banking Graphic" 
+            class="absolute inset-0 w-full h-full object-cover opacity-90 transition-transform duration-700 hover:scale-105"
+            referrerpolicy="no-referrer" />
+          <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent flex flex-col justify-end p-6">
+            <span class="text-[10px] font-bold text-brand-gold tracking-wider uppercase">FINANCIAL SECURITY</span>
+            <h4 class="text-white font-display font-bold text-lg mt-1">Secure Banking Guard</h4>
+            <p class="text-slate-300 text-xs font-light mt-1">RBI approved payment gateways, anti-money laundering compliance, and secure escrow services.</p>
+          </div>
         </div>
-        <div class="space-y-3">
-          <h3 class="font-display font-bold text-lg text-brand-blue">2. Payment Methods &amp; Banking</h3>
-          <p class="text-slate-500 text-xs leading-relaxed font-light">
-            We prioritize mutual protection, working only with world-renowned banking institutions through standard verified instruments:
-          </p>
+
+        <!-- Content Column (Right) -->
+        <div class="p-8 sm:p-10 lg:col-span-7 lg:order-2 flex flex-col justify-between space-y-8">
+          <div class="space-y-6">
+            <div class="flex items-center gap-3">
+              <span class="w-10 h-10 rounded-xl bg-brand-blue/5 text-brand-blue flex items-center justify-center border border-brand-blue/10">
+                <mat-icon class="text-brand-gold">account_balance_wallet</mat-icon>
+              </span>
+              <h3 class="font-display font-bold text-xl sm:text-2xl text-brand-blue">2. Payment Methods &amp; Banking Channels</h3>
+            </div>
+            <p class="text-slate-500 text-xs leading-relaxed font-light">
+              We operate exclusively through official corporate banking accounts. All financial instruments must be confirmed by reputable central authorities:
+            </p>
+
+            <div class="space-y-4">
+              @for (term of paymentTerms(); track term.name) {
+                <div class="p-5 bg-slate-50 rounded-2xl border border-slate-100 hover:border-brand-gold/20 transition-all duration-200">
+                  <div class="flex items-center gap-2 mb-2">
+                    <mat-icon class="text-brand-gold text-lg">gpp_good</mat-icon>
+                    <span class="font-display font-bold text-sm text-brand-blue">{{ term.name }}</span>
+                  </div>
+                  <p class="text-xs text-slate-500 font-light mb-3">{{ term.description }}</p>
+                  <ul class="space-y-1.5 list-none pl-0">
+                    @for (bullet of term.details; track bullet) {
+                      <li class="flex items-start gap-2 text-[11px] text-slate-600">
+                        <span class="text-brand-gold font-bold">•</span>
+                        <span>{{ bullet }}</span>
+                      </li>
+                    }
+                  </ul>
+                </div>
+              }
+            </div>
+          </div>
+
+          <div class="pt-4 border-t border-slate-100 flex flex-wrap gap-4 items-center justify-between text-xs text-slate-400">
+            <span class="flex items-center gap-1.5 font-mono">
+              <mat-icon class="text-xs text-brand-gold">shield</mat-icon>
+              Swift Code, Bank Details Shared Upon Request
+            </span>
+          </div>
         </div>
-        <ul class="text-xs text-slate-600 space-y-2 list-none pl-0">
-          <li class="flex items-start gap-2">
-            <span class="text-brand-gold font-bold">•</span>
-            <div><strong>Irrevocable Letter of Credit (L/C):</strong> Confirmed and payable at sight, issued by a tier-1 international bank.</div>
-          </li>
-          <li class="flex items-start gap-2">
-            <span class="text-brand-gold font-bold">•</span>
-            <div><strong>Telegraphic Transfer (T/T):</strong> Standard advanced deposit (e.g., 30% advance deposit upon contract signing, and 70% balance against scanned copies of the original Bill of Lading).</div>
-          </li>
-          <li class="flex items-start gap-2">
-            <span class="text-brand-gold font-bold">•</span>
-            <div><strong>Custom Trade Profiles:</strong> Terms for established long-term regular importers can be negotiated individually.</div>
-          </li>
-        </ul>
       </div>
 
-      <!-- Card 3: Compliances -->
-      <div class="bg-white rounded-2xl p-8 border border-slate-100 shadow-sm space-y-6">
-        <div class="w-12 h-12 bg-brand-blue/5 text-brand-blue rounded-xl flex items-center justify-center">
-          <mat-icon class="text-brand-gold">verified_user</mat-icon>
+      <!-- SECTION 3: EXPORT CERTIFICATION & DOCUMENTS -->
+      <div class="bg-white rounded-3xl border border-slate-100 shadow-sm overflow-hidden grid lg:grid-cols-12 gap-0 transition-all duration-300 hover:shadow-md">
+        <!-- Content Column (Left) -->
+        <div class="p-8 sm:p-10 lg:col-span-7 flex flex-col justify-between space-y-8">
+          <div class="space-y-4">
+            <div class="flex items-center gap-3">
+              <span class="w-10 h-10 rounded-xl bg-brand-blue/5 text-brand-blue flex items-center justify-center border border-brand-blue/10">
+                <mat-icon class="text-brand-gold">assignment_turned_in</mat-icon>
+              </span>
+              <h3 class="font-display font-bold text-xl sm:text-2xl text-brand-blue">3. Export Certifications &amp; Documentation</h3>
+            </div>
+            <p class="text-slate-500 text-xs leading-relaxed font-light">
+              Our bulk agricultural shipments are systematically accompanied by a complete regulatory docket, verified and endorsed by custom authorities and surveyors:
+            </p>
+
+            <!-- Export Documents Numbered List -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+              @for (doc of exportDocuments(); track doc.id) {
+                <div class="p-4 bg-slate-50 rounded-xl border border-slate-100 flex items-start gap-3 hover:border-brand-gold/30 hover:bg-white transition-all duration-200">
+                  <span class="w-6 h-6 rounded-full bg-brand-blue text-brand-gold text-xs font-bold flex items-center justify-center shrink-0">
+                    {{ doc.id }}
+                  </span>
+                  <div class="space-y-1">
+                    <span class="font-bold text-xs text-slate-800 block">{{ doc.name }}</span>
+                    <p class="text-[11px] text-slate-500 leading-normal font-light">
+                      {{ doc.description }}
+                    </p>
+                    @if (doc.subItems) {
+                      <div class="flex flex-wrap gap-2 mt-2">
+                        @for (sub of doc.subItems; track sub) {
+                          <span class="px-2 py-0.5 bg-brand-blue/5 text-brand-blue text-[9px] font-mono rounded font-semibold border border-brand-blue/5">
+                            {{ sub }}
+                          </span>
+                        }
+                      </div>
+                    }
+                  </div>
+                </div>
+              }
+            </div>
+          </div>
+
+          <div class="pt-4 border-t border-slate-100 flex items-center gap-2 text-xs text-slate-400 font-mono">
+            <mat-icon class="text-xs text-brand-gold">verified</mat-icon>
+            <span>Standard SGS testing or customer-nominated inspectors are warmly welcomed.</span>
+          </div>
         </div>
-        <div class="space-y-3">
-          <h3 class="font-display font-bold text-lg text-brand-blue">3. Export Certifications &amp; Assurances</h3>
-          <p class="text-slate-500 text-xs leading-relaxed font-light">
-            Our agricultural dispatches are systematically backed by essential regulatory approvals:
-          </p>
+
+        <!-- Image Column (Right) -->
+        <div class="lg:col-span-5 bg-slate-900 relative min-h-[300px] lg:min-h-full overflow-hidden flex flex-col">
+          <img 
+            src="/docs_chart.jpg" 
+            alt="JP EXIM Export Compliance Documentation" 
+            class="absolute inset-0 w-full h-full object-cover opacity-90 transition-transform duration-700 hover:scale-105"
+            referrerpolicy="no-referrer" />
+          <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent flex flex-col justify-end p-6">
+            <span class="text-[10px] font-bold text-brand-gold tracking-wider uppercase">REGULATORY &amp; SAFETY</span>
+            <h4 class="text-white font-display font-bold text-lg mt-1">Full Export Clearance</h4>
+            <p class="text-slate-300 text-xs font-light mt-1">100% compliant with Ministry of Agriculture, APEDA, and global phytosanitary policies.</p>
+          </div>
         </div>
-        <ul class="text-xs text-slate-600 space-y-2 list-none pl-0">
-          <li class="flex items-start gap-2">
-            <span class="text-brand-gold font-bold">•</span>
-            <div><strong>Phytosanitary Certificate:</strong> Issued by the Ministry of Agriculture, India, guaranteeing pest-free fresh crops.</div>
-          </li>
-          <li class="flex items-start gap-2">
-            <span class="text-brand-gold font-bold">•</span>
-            <div><strong>SGS / Surveyor Quality Certification:</strong> Third-party verification of weight, size, and aflatoxin presence at port of loading.</div>
-          </li>
-          <li class="flex items-start gap-2">
-            <span class="text-brand-gold font-bold">•</span>
-            <div><strong>Certificate of Origin:</strong> Authenticated proof of rich crop sourcing from premium Gujarat fields.</div>
-          </li>
-        </ul>
       </div>
 
     </div>
 
-    <!-- Security advisory -->
-    <div class="bg-brand-blue/5 border border-brand-blue/10 p-6 rounded-2xl mt-12 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-      <div class="flex items-center gap-3">
-        <mat-icon class="text-brand-blue text-2xl">shield</mat-icon>
+    <!-- VALUE PROPOSITION BAR (At the bottom, matching screenshot 3 footer) -->
+    <div class="mt-16 bg-[#0A2540] text-white rounded-3xl p-6 sm:p-8 border border-brand-gold/20 shadow-xl relative overflow-hidden">
+      <!-- Background glow -->
+      <div class="absolute -right-16 -bottom-16 w-64 h-64 bg-brand-gold/10 rounded-full blur-3xl"></div>
+      
+      <div class="relative z-10 grid grid-cols-2 md:grid-cols-5 gap-6 text-center">
+        @for (badge of valueBadges(); track badge.name) {
+          <div class="flex flex-col items-center space-y-2 p-2">
+            <div class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center border border-white/10 shadow-inner">
+              <mat-icon class="text-brand-gold">{{ badge.icon }}</mat-icon>
+            </div>
+            <span class="text-[10px] uppercase tracking-wider font-bold text-slate-300 leading-tight">
+              {{ badge.name }}
+            </span>
+          </div>
+        }
+      </div>
+    </div>
+
+    <!-- Secure corporate footer CTA -->
+    <div class="bg-brand-blue/5 border border-brand-blue/10 p-6 sm:p-8 rounded-2xl mt-12 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
+      <div class="flex items-start gap-4">
+        <span class="w-12 h-12 rounded-full bg-[#0A2540]/5 flex items-center justify-center shrink-0 border border-[#0A2540]/10">
+          <mat-icon class="text-brand-blue text-2xl">shield_person</mat-icon>
+        </span>
         <div>
-          <p class="text-sm font-bold text-brand-blue">Secure Corporate Trading Guard</p>
-          <p class="text-xs text-slate-500 font-light mt-0.5">We adhere strictly to RBI banking standards and anti-money laundering compliance regulations.</p>
+          <p class="text-sm font-bold text-brand-blue">Direct Export Desk Connect</p>
+          <p class="text-xs text-slate-500 font-light mt-0.5">Contact Mr. Pradip Padhiyar for direct negotiation, customs logistics setups, or formal pricing contracts.</p>
         </div>
       </div>
-      <button type="button" routerLink="/contact" class="px-5 py-2.5 bg-brand-blue hover:bg-brand-blue-light text-white font-bold text-xs rounded transition-colors cursor-pointer">
-        REQUEST BANK DETAILS
-      </button>
+      <div class="flex flex-wrap gap-3">
+        <a href="https://wa.me/917046058487" target="_blank" rel="noopener" class="px-5 py-2.5 bg-emerald-500 hover:bg-emerald-600 text-white font-bold text-xs rounded transition-colors cursor-pointer flex items-center gap-1.5 shadow-sm">
+          <mat-icon class="text-sm">chat</mat-icon>
+          WHATSAPP CHAT
+        </a>
+        <button type="button" routerLink="/contact" class="px-5 py-2.5 bg-brand-blue hover:bg-brand-blue-light text-white font-bold text-xs rounded transition-colors cursor-pointer flex items-center gap-1.5">
+          <mat-icon class="text-sm">mail</mat-icon>
+          OFFICIAL INQUIRY
+        </button>
+      </div>
     </div>
 
   </div>

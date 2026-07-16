@@ -1,6 +1,8 @@
 {
-  "name": "JP EXIM",
+  "name": "Copy of JP EXIM",
   "description": "JP EXIM - Global Trade and Trusted Exports of Potatoes and Peanuts from India to the World.",
   "requestFramePermissions": [],
-  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
 }

@@ -7,6 +7,7 @@ import {
 import express from 'express';
 import {join} from 'node:path';
 import { GoogleGenAI } from '@google/genai';
+import nodemailer from 'nodemailer';
 
 const browserDistFolder = join(import.meta.dirname, '../browser');
 
@@ -158,6 +159,211 @@ app.post('/api/chat', async (req, res) => {
   }
 });
 
+// Helper to get SMTP transporter
+function getEmailTransporter() {
+  const host = process.env['SMTP_HOST'];
+  const port = process.env['SMTP_PORT'];
+  const user = process.env['SMTP_USER'];
+  const pass = process.env['SMTP_PASS'];
+
+  if (!host || !user || !pass) {
+    console.warn('EMAIL NOTIFICATION SYSTEM: SMTP credentials (SMTP_HOST, SMTP_USER, SMTP_PASS) are not fully configured in your environment variables. Email notifications will be printed to server logs.');
+    return null;
+  }
+
+  try {
+    return nodemailer.createTransport({
+      host: host,
+      port: parseInt(port || '587', 10),
+      secure: port === '465',
+      auth: {
+        user: user,
+        pass: pass,
+      },
+    });
+  } catch (err) {
+    console.error('Failed to create Nodemailer transport:', err);
+    return null;
+  }
+}
+
+// Helper to generate the beautifully structured HTML body for B2B mail
+function generateInquiryHtmlEmail(data: {
+  id: string;
+  name: string;
+  company: string;
+  country: string;
+  email: string;
+  phone: string;
+  product: string;
+  quantity: string;
+  message: string;
+  proposal: string;
+}) {
+  const cleanPhone = data.phone ? data.phone.replace(/\D/g, '') : '';
+  const waLink = cleanPhone 
+    ? `https://wa.me/${cleanPhone}?text=Hi%20${encodeURIComponent(data.name)},%20I%20am%20Pradip%20from%20JP%20EXIM%20regarding%20your%20B2B%20inquiry.` 
+    : '#';
+
+  const remarksHtml = data.message ? `
+    <div style="font-size: 11px; text-transform: uppercase; color: #64748b; font-weight: 700; margin-bottom: 4px; letter-spacing: 0.5px; margin-left: 4px;">Buyer Remarks / Custom Requirements</div>
+    <div style="border-left: 4px solid #D4AF37; background-color: #fffbeb; padding: 16px; border-radius: 0 8px 8px 0; margin-bottom: 24px; font-style: italic; font-size: 14px; color: #475569; line-height: 1.5;">
+      "${data.message}"
+    </div>
+  ` : '';
+
+  const waBtnHtml = cleanPhone ? `
+    <a href="${waLink}" target="_blank" rel="noopener" style="display: block; text-align: center; padding: 14px 20px; border-radius: 8px; font-size: 13px; font-weight: bold; text-decoration: none; background-color: #22c55e; color: #ffffff !important;">
+      💬 Chat on WhatsApp
+    </a>
+  ` : '';
+
+  return `
+    <!DOCTYPE html>
+    <html>
+    <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>New B2B Export Inquiry - JP EXIM</title>
+    </head>
+    <body style="font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; background-color: #f8fafc; margin: 0; padding: 0; color: #334155; -webkit-font-smoothing: antialiased;">
+      <div style="max-width: 600px; margin: 20px auto; background-color: #ffffff; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03); border: 1px solid #e2e8f0;">
+        <div style="background-color: #0A2540; padding: 32px 24px; text-align: center; border-bottom: 4px solid #D4AF37;">
+          <h1 style="color: #ffffff; margin: 0; font-size: 24px; font-weight: 700; letter-spacing: -0.5px;">NEW B2B EXPORT INQUIRY</h1>
+          <p style="color: #D4AF37; margin: 8px 0 0 0; font-size: 12px; text-transform: uppercase; letter-spacing: 2px; font-weight: 600;">JP EXIM Global Sourcing Desk</p>
+        </div>
+        <div style="padding: 32px 24px;">
+          <div style="display: inline-block; background-color: #f1f5f9; color: #0A2540; font-size: 11px; font-weight: bold; padding: 4px 12px; border-radius: 9999px; margin-bottom: 16px; border: 1px solid #cbd5e1; font-family: monospace;">REF ID: #${data.id}</div>
+          
+          <h2 style="font-size: 18px; color: #0A2540; margin-top: 0; margin-bottom: 16px; font-weight: 700;">Customer Lead Profile</h2>
+          
+          <div style="background-color: #f8fafc; border-radius: 12px; padding: 20px; margin-bottom: 24px; border: 1px solid #e2e8f0;">
+            <table cellpadding="0" cellspacing="0" width="100%" style="border-collapse: collapse;">
+              <tr>
+                <td style="padding-bottom: 12px; width: 50%;">
+                  <div style="font-size: 11px; text-transform: uppercase; color: #64748b; font-weight: 700; margin-bottom: 2px; letter-spacing: 0.5px;">Buyer Name</div>
+                  <div style="font-size: 14px; color: #0F172A; font-weight: 500;">${data.name}</div>
+                </td>
+                <td style="padding-bottom: 12px; width: 50%;">
+                  <div style="font-size: 11px; text-transform: uppercase; color: #64748b; font-weight: 700; margin-bottom: 2px; letter-spacing: 0.5px;">Company Name</div>
+                  <div style="font-size: 14px; color: #0F172A; font-weight: 500;">${data.company}</div>
+                </td>
+              </tr>
+              <tr>
+                <td style="padding-bottom: 12px;">
+                  <div style="font-size: 11px; text-transform: uppercase; color: #64748b; font-weight: 700; margin-bottom: 2px; letter-spacing: 0.5px;">Country / Target Port</div>
+                  <div style="font-size: 14px; color: #0F172A; font-weight: 500;">${data.country}</div>
+                </td>
+                <td style="padding-bottom: 12px;">
+                  <div style="font-size: 11px; text-transform: uppercase; color: #64748b; font-weight: 700; margin-bottom: 2px; letter-spacing: 0.5px;">Email Address</div>
+                  <div style="font-size: 14px; color: #0F172A; font-weight: 500;"><a href="mailto:${data.email}" style="color: #0A2540; text-decoration: none; font-weight: bold;">${data.email}</a></div>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" style="padding-top: 4px;">
+                  <div style="font-size: 11px; text-transform: uppercase; color: #64748b; font-weight: 700; margin-bottom: 2px; letter-spacing: 0.5px;">Phone / WhatsApp</div>
+                  <div style="font-size: 14px; color: #0F172A; font-weight: 500;"><a href="tel:${data.phone}" style="color: #0A2540; text-decoration: none; font-weight: bold;">${data.phone}</a></div>
+                </td>
+              </tr>
+            </table>
+          </div>
+          
+          <div style="background-color: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 12px; padding: 16px; margin-bottom: 24px;">
+            <div style="font-size: 12px; font-weight: bold; color: #166534; text-transform: uppercase; margin-bottom: 8px;">
+              📦 Order Specifications
+            </div>
+            <table cellpadding="0" cellspacing="0" width="100%" style="border-collapse: collapse;">
+              <tr>
+                <td style="font-size: 13px; color: #1e3a1e; padding-bottom: 6px;"><strong>Product Sourced:</strong></td>
+                <td style="font-size: 13px; color: #166534; font-weight: bold; text-align: right; padding-bottom: 6px;">${data.product}</td>
+              </tr>
+              <tr>
+                <td style="font-size: 13px; color: #1e3a1e;"><strong>Target Quantity:</strong></td>
+                <td style="font-size: 13px; color: #166534; font-weight: bold; text-align: right;">${data.quantity} Metric Tons</td>
+              </tr>
+            </table>
+          </div>
+          
+          ${remarksHtml}
+          
+          <div style="font-size: 11px; text-transform: uppercase; color: #64748b; font-weight: 700; margin-bottom: 4px; letter-spacing: 0.5px; margin-left: 4px;">Tailored AI Proposal Generated</div>
+          <div style="background-color: #fafafa; border: 1px dashed #cbd5e1; padding: 16px; border-radius: 8px; font-family: monospace; font-size: 12px; white-space: pre-wrap; color: #334155; margin-bottom: 24px; max-height: 250px; overflow-y: auto;">${data.proposal}</div>
+          
+          <div style="margin-top: 32px; width: 100%;">
+            <table cellpadding="0" cellspacing="0" width="100%" style="border-collapse: collapse;">
+              <tr>
+                ${cleanPhone ? `
+                  <td style="padding-right: 6px; width: 50%;">
+                    ${waBtnHtml}
+                  </td>
+                ` : ''}
+                <td style="padding-left: ${cleanPhone ? '6px' : '0'}; width: ${cleanPhone ? '50%' : '100%'};">
+                  <a href="mailto:${data.email}?subject=Re:%20JP%20EXIM%20Export%20Inquiry%20-%20Ref%20%23${data.id}" style="display: block; text-align: center; padding: 14px 20px; border-radius: 8px; font-size: 13px; font-weight: bold; text-decoration: none; background-color: #0A2540; color: #ffffff !important;">
+                    ✉️ Reply via Email
+                  </a>
+                </td>
+              </tr>
+            </table>
+          </div>
+        </div>
+        <div style="background-color: #f1f5f9; padding: 24px; text-align: center; font-size: 11px; color: #64748b; border-top: 1px solid #e2e8f0;">
+          <p style="margin: 4px 0;"><strong>JP EXIM Deesa Headquarters</strong></p>
+          <p style="margin: 4px 0;">Plot No. 60, Vedanta Bungalows, Deesa, Gujarat - 385535, India</p>
+          <p style="margin: 4px 0; color: #94a3b8;">This inquiry notification was secure-encrypted and generated via JP EXIM Online Portal.</p>
+        </div>
+      </div>
+    </body>
+    </html>
+  `;
+}
+
+// Function to trigger email dispatch
+async function sendInquiryEmail(data: {
+  id: string;
+  name: string;
+  company: string;
+  country: string;
+  email: string;
+  phone: string;
+  product: string;
+  quantity: string;
+  message: string;
+  proposal: string;
+}) {
+  const recipient = process.env['OWNER_EMAIL'] || 'padhiyarpradip1@gmail.com';
+  const transporter = getEmailTransporter();
+  const htmlContent = generateInquiryHtmlEmail(data);
+
+  if (!transporter) {
+    console.log('\n================== SIMULATED B2B INQUIRY EMAIL ==================');
+    console.log(`TO: ${recipient}`);
+    console.log(`SUBJECT: [JP EXIM] B2B Export Inquiry from ${data.company || data.name} (#${data.id})`);
+    console.log(`CUSTOMER: ${data.name} (${data.email}, ${data.phone})`);
+    console.log(`PRODUCT: ${data.product}, QTY: ${data.quantity} Tons`);
+    console.log('--- EMAIL HTML BODY PREVIEW ---');
+    console.log(htmlContent);
+    console.log('=================================================================\n');
+    return { sent: false, simulated: true, recipient };
+  }
+
+  try {
+    const info = await transporter.sendMail({
+      from: `"JP EXIM Sourcing Desk" <${process.env['SMTP_USER']}>`,
+      to: recipient,
+      replyTo: data.email,
+      subject: `[JP EXIM] B2B Export Inquiry from ${data.company || data.name} (Ref: #${data.id})`,
+      html: htmlContent,
+      text: `New B2B Inquiry Sourced:\n\nReference ID: #${data.id}\nBuyer Name: ${data.name}\nCompany: ${data.company}\nCountry/Port: ${data.country}\nEmail: ${data.email}\nPhone: ${data.phone}\nProduct: ${data.product}\nQuantity: ${data.quantity} Tons\nRemarks: ${data.message}\n\nGenerated Proposal Draft:\n\n${data.proposal}`,
+    });
+
+    console.log(`LIVE EMAIL DISPATCHED SUCCESSFULLY! Message ID: ${info.messageId}`);
+    return { sent: true, simulated: false, recipient, messageId: info.messageId };
+  } catch (err) {
+    console.error('Nodemailer failed to deliver email live:', err);
+    return { sent: false, error: (err as Error).message, recipient };
+  }
+}
+
 /**
  * Endpoint for B2B Inquiry Processing
  * Analyzes inquiry payload and drafts a detailed, fully customized B2B Proforma Invoice / Business Quotation Draft
@@ -170,6 +376,8 @@ app.post('/api/inquiry', async (req, res) => {
     return;
   }
 
+  const inquiryId = Math.floor(1000 + Math.random() * 9000).toString();
+
   const ai = getGeminiClient();
   if (!ai) {
     // Generate an elegant local mock proposal draft
@@ -177,7 +385,7 @@ app.post('/api/inquiry', async (req, res) => {
 DEAR ${name.toUpperCase()},
 REPRESENTING ${company ? company.toUpperCase() : 'VALUED IMPORT CO.'} (${country || 'GLOBAL PORT'})
 
-SUBJ: OFFICIAL B2B EXPORT INTEREST ACKNOWLEDGMENT & INQUIRY REF #JPX-${Math.floor(1000 + Math.random() * 9000)}
+SUBJ: OFFICIAL B2B EXPORT INTEREST ACKNOWLEDGMENT & INQUIRY REF #JPX-${inquiryId}
 
 Thank you for contacting JP EXIM, Gujarat's premier agricultural exporter. We have received your inquiry for:
 - Product of Interest: ${product || 'Fresh Potatoes / Peanuts'}
@@ -203,9 +411,23 @@ Export Desk, JP EXIM Deesa
 Direct WhatsApp: +91 7046058487
     `.trim();
 
+    // Send the email in the background asynchronously
+    sendInquiryEmail({
+      id: inquiryId,
+      name,
+      company: company || 'Private Buyer',
+      country: country || 'International Market',
+      email,
+      phone: phone || '',
+      product: product || 'Fresh Potatoes / Peanuts',
+      quantity: quantity || 'Standard Container Load',
+      message: message || '',
+      proposal: responseText
+    }).catch(err => console.error('Background email submission error:', err));
+
     res.json({
       replyText: responseText,
-      followUpMessage: `Thank you, ${name}! Your inquiry has been logged successfully. A draft business proposal has been prepared for you below. We will also contact you on WhatsApp/Email shortly.`,
+      followUpMessage: `Thank you, ${name}! Your inquiry has been logged successfully and a copy has been sent to the desk of Mr. Padhiyar. A draft business proposal has been prepared for you below.`,
       simulated: true
     });
     return;
@@ -250,9 +472,25 @@ Keep the formatting clean with appropriate spacing, bold labels, and paragraphs.
       }
     });
 
+    const proposalText = response.text || '';
+
+    // Send the email in the background asynchronously
+    sendInquiryEmail({
+      id: inquiryId,
+      name,
+      company: company || 'Private Buyer',
+      country: country || 'International Market',
+      email,
+      phone: phone || '',
+      product: product || 'Fresh Potatoes / Peanuts',
+      quantity: quantity || 'Standard Container Load',
+      message: message || '',
+      proposal: proposalText
+    }).catch(err => console.error('Background email submission error:', err));
+
     res.json({
-      replyText: response.text,
-      followUpMessage: `Inquiry successfully processed! Our B2B AI Generator has compiled a tailored export proposal based on your specific requirements. Our Director, Mr. Pradip Padhiyar, will reach out to you on WhatsApp at ${phone || 'your phone number'} or Email at ${email} shortly.`,
+      replyText: proposalText,
+      followUpMessage: `Inquiry successfully processed! Our B2B AI Generator has compiled a tailored export proposal based on your specific requirements and notified our Director, Mr. Pradip Padhiyar, at padhiyarpradip1@gmail.com. We will reach out to you on WhatsApp at ${phone || 'your phone number'} or Email at ${email} shortly.`,
     });
   } catch (error) {
     const err = error as Error;

@@ -77,7 +77,7 @@
             
             <!-- Map representation / Global routes -->
             <div class="relative h-48 bg-slate-900/60 rounded-xl overflow-hidden border border-white/10 flex items-center justify-center">
-              <div class="absolute inset-0 bg-cover bg-center mix-blend-overlay opacity-30" style="background-image: url('https://picsum.photos/seed/port/600/400');"></div>
+              <div class="absolute inset-0 bg-cover bg-center mix-blend-overlay opacity-60" style="background-image: url('/global_logistics.jpg');"></div>
               <!-- Interactive Glowing Radar -->
               <div class="absolute w-24 h-24 border border-brand-gold/20 rounded-full animate-ping"></div>
               <div class="absolute w-12 h-12 border border-brand-gold/40 rounded-full animate-pulse"></div>
@@ -130,6 +130,60 @@
         </div>
       </div>
 
+    </div>
+  </div>
+</section>
+
+<!-- GLOBAL LOGISTICS SECTION -->
+<section class="py-16 bg-slate-50 border-t border-b border-slate-100">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid lg:grid-cols-12 gap-12 items-center">
+      <!-- Image side -->
+      <div class="lg:col-span-6 relative">
+        <div class="relative rounded-2xl overflow-hidden shadow-xl border border-slate-200">
+          <img src="/global_logistics.jpg" alt="JP EXIM Global Shipping Logistics" class="w-full object-cover h-[350px] sm:h-[400px]" referrerpolicy="no-referrer" />
+          <div class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-slate-950/80 to-transparent p-6 text-white">
+            <span class="text-[10px] font-mono tracking-widest text-brand-gold uppercase block mb-1">MUNDRA DEEP SEA PORT</span>
+            <h4 class="font-bold text-lg">Integrated Supply Chain &amp; Sea Freight</h4>
+            <p class="text-xs text-slate-300 font-light mt-1">Ready container dispatch within 48 hours of customs clearance.</p>
+          </div>
+        </div>
+        <!-- Accent circles -->
+        <div class="absolute -bottom-4 -left-4 w-24 h-24 bg-brand-gold/10 rounded-full blur-xl pointer-events-none"></div>
+      </div>
+      
+      <!-- Content side -->
+      <div class="lg:col-span-6 space-y-6">
+        <div class="space-y-2">
+          <span class="text-xs font-bold text-brand-gold tracking-widest uppercase block">WORLDWIDE DELIVERY NETWORK</span>
+          <h3 class="font-display font-bold text-2xl sm:text-3xl text-brand-blue">Reliable Ocean Cargo Transit</h3>
+        </div>
+        <p class="text-slate-600 text-sm leading-relaxed font-light">
+          At JP EXIM, our agricultural exports are handled via state-of-the-art temperature-controlled reefers and heavy-duty ocean vessels. Strategically sourced from Deesa, our potatoes and peanuts are immediately trucked to Mundra and Kandla ports to maintain freshness.
+        </p>
+        <div class="grid grid-cols-2 gap-6 pt-4">
+          <div class="flex gap-3">
+            <mat-icon class="text-brand-gold mt-1">directions_boat</mat-icon>
+            <div>
+              <h5 class="font-bold text-brand-blue text-sm">Direct Shipments</h5>
+              <p class="text-xs text-slate-500 mt-1">Reduced handling to ensure product integrity.</p>
+            </div>
+          </div>
+          <div class="flex gap-3">
+            <mat-icon class="text-brand-gold mt-1">assignment_turned_in</mat-icon>
+            <div>
+              <h5 class="font-bold text-brand-blue text-sm">Full Documentation</h5>
+              <p class="text-xs text-slate-500 mt-1">SGS Inspection, Phytosanitary, &amp; COO certificates.</p>
+            </div>
+          </div>
+        </div>
+        <div class="pt-4">
+          <button type="button" routerLink="/markets" class="px-6 py-3 bg-brand-blue hover:bg-brand-blue-light text-white text-xs font-bold uppercase rounded-lg shadow-sm transition-all flex items-center gap-2 cursor-pointer">
+            Explore Transit Times
+            <mat-icon>arrow_forward</mat-icon>
+          </button>
+        </div>
+      </div>
     </div>
   </div>
 </section>
