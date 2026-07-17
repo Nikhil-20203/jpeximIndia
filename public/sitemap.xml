@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+    <!-- Home Page -->
+    <url>
+        <loc>https://jpeximindia.com/</loc>
+        <lastmod>2026-07-17</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>1.0</priority>
+    </url>
+
+    <!-- Products -->
+    <url>
+        <loc>https://jpeximindia.com/products</loc>
+        <lastmod>2026-07-17</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+    </url>
+
+    <!-- About Us -->
+    <url>
+        <loc>https://jpeximindia.com/about</loc>
+        <lastmod>2026-07-17</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <!-- Contact -->
+    <url>
+        <loc>https://jpeximindia.com/contact</loc>
+        <lastmod>2026-07-17</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <!-- poduct markets -->
+    <url>
+        <loc>https://jpeximindia.com/markets</loc>
+        <lastmod>2026-07-17</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+    </url>
+
+    <!-- Product process -->
+    <url>
+        <loc>https://jpeximindia.com/process</loc>
+        <lastmod>2026-07-17</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+    </url>
+
+    <!-- Product trade -->
+    <url>
+        <loc>https://jpeximindia.com/trade</loc>
+        <lastmod>2026-07-17</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+    </url>
+</urlset>
