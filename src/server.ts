@@ -3,13 +3,10 @@ import { getAllowedHosts, getContext, getTrustProxyHeaders } from '@netlify/angu
 import { GoogleGenAI } from '@google/genai';
 import nodemailer from 'nodemailer';
 
-const browserDistFolder = join(import.meta.dirname, '../browser');
-
-const app = express();
-const angularApp = new AngularNodeAppEngine();
-
-// Configure body parsing for JSON payloads
-app.use(express.json());
+const angularAppEngine = new AngularAppEngine({
+  allowedHosts: getAllowedHosts(),
+  trustProxyHeaders: getTrustProxyHeaders(),
+})
 
 // Lazy-initialization of the Google GenAI client to avoid crashes if GEMINI_API_KEY is missing.
 let aiClient: GoogleGenAI | null = null;
@@ -149,7 +146,7 @@ async function handleChat(request: Request): Promise<Response> {
     console.error('Gemini Chat API Error:', err);
     return Response.json({ error: 'Failed to process assistant response', details: err.message }, { status: 500 });
   }
-});
+}
 
 // Helper to get SMTP transporter
 function getEmailTransporter() {
@@ -416,7 +413,7 @@ Direct WhatsApp: +91 7046058487
       proposal: responseText
     }).catch(err => console.error('Background email submission error:', err));
 
-    res.json({
+    return Response.json({
       replyText: responseText,
       followUpMessage: `Thank you, ${name}! Your inquiry has been logged successfully and a copy has been sent to the desk of Mr. Padhiyar. A draft business proposal has been prepared for you below.`,
       simulated: true
@@ -478,7 +475,7 @@ Keep the formatting clean with appropriate spacing, bold labels, and paragraphs.
       proposal: proposalText
     }).catch(err => console.error('Background email submission error:', err));
 
-    res.json({
+    return Response.json({
       replyText: proposalText,
       followUpMessage: `Inquiry successfully processed! Our B2B AI Generator has compiled a tailored export proposal based on your specific requirements and notified our Director, Mr. Pradip Padhiyar, at padhiyarpradip1@gmail.com. We will reach out to you on WhatsApp at ${phone || 'your phone number'} or Email at ${email} shortly.`,
     });
